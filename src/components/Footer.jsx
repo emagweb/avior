@@ -7,7 +7,7 @@ import { legal } from '../data/menu'
 const Footer = ({ menu = legal, copy = '\u00A92026 - Avior.' }) => {
   return (
     <footer className='p-b-96'>
-      <div className='container p-x-24'>
+      <div className='container p-x-24 flex aic jcsb fw-300'>
         <p>{copy} <span>All Rights Reserved.</span></p>
         <Nav items={menu} />
       </div>

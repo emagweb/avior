@@ -4,31 +4,10 @@ body
   font-family: $basic
   line-height: 1.5
 
-// Container. Holds the width and centres the block, nothing else.
-// Padding stays a utility in the markup: <div class="container p-x-24">
-.container
-  width: 100%
-  max-width: $content
-  margin-left: auto
-  margin-right: auto
-  box-sizing: border-box
-  // Zero out the gutters of the Bootstrap .container so behaviour stays
-  // the same once Bootstrap is removed
-  padding-left: 0
-  padding-right: 0
-  // Full-bleed: <div class="container wide">
-  // min-width with !important beats the mobile .wide from _helpers.sass
-  &.wide
-    max-width: 100%
-    min-width: 100% !important
-
 p,
 figure
   margin: 0
   padding: 0
-
-p
-  line-height: 1.5
 
 #logo
   margin-right: 12px
@@ -40,38 +19,3 @@ nav
 
 a
   text-decoration: none
-
-.page
-  section
-    margin-bottom: 40px
-    line-height: 2
-    h3
-      padding-bottom: 16px
-    p, li
-      font-size: 1.25em
-    ul
-      margin-top: 24px
-      list-style: circle
-
-footer
-  *
-    font-size: 1em !important
-    font-weight: 300 !important
-  > .container
-    display: flex
-    align-items: center
-    justify-content: space-between
-  +v-sm
-    text-align: center
-    > .container
-      display: block
-    span
-      display: block
-      text-align: center
-      padding: 16px 0 40px
-    nav
-      a
-        display: block
-        margin: 0 auto 24px
-        &:last-child
-          margin-bottom: 0
