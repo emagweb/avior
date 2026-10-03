@@ -1,112 +1,17 @@
-// Mixins for repeated styles
-=cc($color)
-  color: $color !important
+@each $name, $color in $palette
+  .c-#{$name}
+    color: $color !important
+  .bg-#{$name}
+    background-color: $color !important
+  .bc-#{$name}
+    border-style: solid
+    border-color: $color !important
 
-=bg($color)
-  background-color: $color !important
+.dashed
+  border-style: dashed
 
-=bc($color)
-  border-style: solid
-  border-color: $color !important
-
-// Colors
-.c
-  &-white
-    +cc($white)
-  &-dark
-    +cc($dark)
-  &-blue
-    +cc($blue)
-  &-pink
-    +cc($pink)
-  &-violet
-    +cc($violet)
-  &-light
-    +cc($light)
-  &-grey
-    +cc($grey)
-  &-orange
-    +cc($orange)
-  &-yellow
-    +cc($yellow)
-  &-green
-    +cc($green)
-  &-medium
-    +cc($medium)
-  &-red
-    +cc($red)
-  &-theme
-    +cc($theme)
-  &-accent
-    +cc($accent)
-
-// Background Colors
-.bg
-  &-white
-    +bg($white)
-  &-dark
-    +bg($dark)
-  &-blue
-    +bg($blue)
-  &-light
-    +bg($light)
-  &-grey
-    +bg($grey)
-  &-pink
-    +bg($pink)
-  &-violet
-    +bg($violet)
-  &-orange
-    +bg($orange)
-  &-yellow
-    +bg($yellow)
-  &-green
-    +bg($green)
-  &-theme
-    +bg($theme)
-  &-medium
-    +bg($medium)
-  &-red
-    +bg($red)
-  &-violet
-    +bg($violet)
-  &-theme
-    +bg($theme)
-  &-accent
-    +bg($accent)
-
-// Border Colors
-.bc
-  &-white
-    +bc($white)
-  &-dark
-    +bc($dark)
-  &-blue
-    +bc($blue)
-  &-light
-    +bc($light)
-  &-grey
-    +bc($grey)
-  &-pink
-    +bc($pink)
-  &-violet
-    +bc($violet)
-  &-orange
-    +bc($orange)
-  &-yellow
-    +bc($yellow)
-  &-green
-    +bc($green)
-  &-theme
-    +bc($theme)
-  &-medium
-    +bc($medium)
-  &-red
-    +bc($red)
-  &-theme
-    +bc($theme)
-  &-accent
-    +bc($accent)
+.double
+  border-style: double
 
 .b-none
   border: none !important
