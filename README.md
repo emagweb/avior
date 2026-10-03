@@ -70,6 +70,9 @@ The dictionary is the one Emmet itself ships: `g` is `gap`, `maw` is `max-width`
 Some names predate the strict rule and stay as aliases: `flex`, `oh`, `tc`, `tl`, `tr`,
 `upp`, `rowrap`, `obfc`.
 
+The full list of classes, with ranges and behaviour, is in
+[docs/utilities.md](docs/utilities.md).
+
 ## Colours
 
 The palette lives in `src/styles/inc/_variables.sass` and expands into three families:
@@ -80,7 +83,19 @@ bg-pink   background-color
 bc-pink   border-color
 ```
 
+Adding a colour is one line in `$palette`, and all three classes appear at once.
 Change a variable and all three change with it.
+
+Border colour also sets a solid style, since a border without a style is invisible.
+Override it with `dashed` or `double`:
+
+```jsx
+<div className="bc-pink bw-2 dashed">
+```
+
+Two names stand apart: `theme` and `accent`. They are aliases for other colours in the
+palette, meant to be repointed per project — `$theme: $white`, `$accent: $pink` by default.
+Use them in components so a project can be recoloured without touching markup.
 
 ## Container
 

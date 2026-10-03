@@ -29,6 +29,21 @@ Some older names break the rule and stay as aliases: `flex`, `oh`, `tc`, `tl`, `
 `upp`, `rowrap`, `obfc`. They are not renamed because they are already written in real
 projects. New names follow the rule strictly.
 
+## Where explanations live
+
+Sass files carry no comments. There are three places instead:
+
+- [README.md](README.md) — how to use the stack
+- [docs/utilities.md](docs/utilities.md) — every generated class, its range and behaviour
+- [docs/decisions.md](docs/decisions.md) — why a particular declaration exists, what
+  breaks if it is removed
+
+Adding a utility family means adding a row to `docs/utilities.md` in the same commit.
+
+Check that file before deleting a declaration that looks redundant. Several of them exist
+only because Bootstrap, the import order or a name collision fights them, and nothing in
+the code says so.
+
 ## Why `_helpers.sass` is imported last
 
 Bootstrap generates its utilities with `!important` — over a thousand occurrences. A

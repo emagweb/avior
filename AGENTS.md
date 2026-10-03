@@ -18,6 +18,10 @@ dictionary. No external grid, no UI library.
   `inc/_variables.sass`, everything else is the engine.
 - Build pages with the `Page` template. Menus are data in `src/data/menu.js`.
 - Write code, comments, copy and commit messages in English.
+- Keep the Sass files free of comments. Usage goes to `README.md`, the class reference to
+  `docs/utilities.md`, reasoning to `docs/decisions.md`.
+- Before deleting a declaration that looks redundant, check `docs/decisions.md`.
+  Most of them are there because something else in the cascade fights them.
 - Run `yarn build` before proposing a change.
 
 The reasoning behind these rules, and how to extend the system, is in
