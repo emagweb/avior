@@ -1,16 +1,49 @@
+@use "sass:color"
+
 .button
   display: inline-flex
   justify-content: center
   align-items: center
+  box-sizing: border-box
   min-width: 160px
   height: 50px
   padding: 0 35px
   color: $white
-  font-size: 1.1em
-  font-weight: 300
-  border: none
-  border-radius: 25px
+  font-size: 1.15em
+  font-weight: 400
+  border: 2px solid $accent
+  border-radius: $radius
   background-color: $accent
   transition: all ease .35s
   outline: none !important
   text-decoration: none
+  &:hover
+    border-color: color.scale($accent, $lightness: -12%)
+    background-color: color.scale($accent, $lightness: -12%)
+  &.outline
+    color: $accent
+    font-weight: 500
+    background-color: transparent
+    &:hover
+      color: $white
+      border-color: $accent
+      background-color: $accent
+  &.mini
+    height: 32px
+    min-width: auto
+    padding: 0 20px
+    font-size: 1em
+  @each $name, $color in $palette
+    &.#{$name}
+      border-color: $color
+      background-color: $color
+      &:hover
+        border-color: color.scale($color, $lightness: -12%)
+        background-color: color.scale($color, $lightness: -12%)
+      &.outline
+        color: $color
+        background-color: transparent
+        &:hover
+          color: $white
+          border-color: $color
+          background-color: $color
