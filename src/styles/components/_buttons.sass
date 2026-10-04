@@ -1,4 +1,19 @@
 @use "sass:color"
+@use "sass:list"
+@use "sass:map"
+
+$light-values: ()
+@each $name in $light-colors
+  $light-values: list.append($light-values, map.get($palette, $name))
+
+@function is-light($name, $color)
+  @return list.index($light-colors, $name) or list.index($light-values, $color)
+
+=filled($name, $color)
+  @if is-light($name, $color)
+    color: $dark
+  @else
+    color: $white
 
 .button
   display: inline-flex
@@ -8,15 +23,18 @@
   min-width: 160px
   height: 50px
   padding: 0 35px
-  color: $white
   font-size: 1.15em
   font-weight: 400
   border: 2px solid $accent
   border-radius: $radius
   background-color: $accent
   transition: all ease .35s
-  outline: none !important
+  outline: none
   text-decoration: none
+  +filled("accent", $accent)
+  &:focus-visible
+    outline: 2px solid $dark
+    outline-offset: 2px
   &:hover
     border-color: color.scale($accent, $lightness: -12%)
     background-color: color.scale($accent, $lightness: -12%)
@@ -25,9 +43,9 @@
     font-weight: 500
     background-color: transparent
     &:hover
-      color: $white
       border-color: $accent
       background-color: $accent
+      +filled("accent", $accent)
   &.mini
     height: 32px
     min-width: auto
@@ -37,6 +55,7 @@
     &.#{$name}
       border-color: $color
       background-color: $color
+      +filled($name, $color)
       &:hover
         border-color: color.scale($color, $lightness: -12%)
         background-color: color.scale($color, $lightness: -12%)
@@ -44,6 +63,6 @@
         color: $color
         background-color: transparent
         &:hover
-          color: $white
           border-color: $color
           background-color: $color
+          +filled($name, $color)

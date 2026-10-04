@@ -7,22 +7,22 @@ of the value. The numeric part is the value itself, taken from the design.
 
 ## Generated ranges
 
-| class | range | produces | note |
-| --- | --- | --- | --- |
-| `w-N` | 0–300 | `width`, `min-width`, `max-width` in `%` | also sets `display: block` |
-| `h-N` | 0–300 | `height`, `min-height`, `max-height` in `vh` | also sets `display: block` |
-| `w-p-N` | 0–1000 | the same three in `px` | |
-| `h-p-N` | 0–1000 | the same three in `px` | |
-| `p-l-N` `p-r-N` `p-t-N` `p-b-N` | 0–300 | `padding` on one side, `px` | |
-| `p-x-N` `p-y-N` | 0–300 | `padding` on two sides, `px` | |
-| `m-l-N` `m-r-N` `m-t-N` `m-b-N` | 0–300 | `margin` on one side, `px` | |
-| `m-x-N` `m-y-N` | 0–300 | `margin` on two sides, `px` | |
-| `s-N` | 0–300 | vertical spacer `N` px tall | `clear: both`, halves below `sm` |
-| `fz-N` | 0–100 | `font-size` in `px` | |
-| `fw-N` | 100–900 | `font-weight` | |
-| `lh-N` | 100–500 | `line-height` as `N × 0.001` | `lh-150` is `1.5`; sets `display: inline-block` |
-| `bw-N` | 0–24 | `border-width` in `px` | |
-| `r-N` | 0–300 | `border-radius` in `px` | |
+| class                           | range   | produces                                     | note                                            |
+| ------------------------------- | ------- | -------------------------------------------- | ----------------------------------------------- |
+| `w-N`                           | 0–300   | `width`, `min-width`, `max-width` in `%`     | also sets `display: block`                      |
+| `h-N`                           | 0–300   | `height`, `min-height`, `max-height` in `vh` | also sets `display: block`                      |
+| `w-p-N`                         | 0–1000  | the same three in `px`                       |                                                 |
+| `h-p-N`                         | 0–1000  | the same three in `px`                       |                                                 |
+| `p-l-N` `p-r-N` `p-t-N` `p-b-N` | 0–300   | `padding` on one side, `px`                  |                                                 |
+| `p-x-N` `p-y-N`                 | 0–300   | `padding` on two sides, `px`                 |                                                 |
+| `m-l-N` `m-r-N` `m-t-N` `m-b-N` | 0–300   | `margin` on one side, `px`                   |                                                 |
+| `m-x-N` `m-y-N`                 | 0–300   | `margin` on two sides, `px`                  |                                                 |
+| `s-N`                           | 0–300   | vertical spacer `N` px tall                  | `clear: both`, halves below `sm`                |
+| `fz-N`                          | 0–100   | `font-size` in `px`                          |                                                 |
+| `fw-N`                          | 100–900 | `font-weight`                                |                                                 |
+| `lh-N`                          | 100–500 | `line-height` as `N × 0.001`                 | `lh-150` is `1.5`; sets `display: inline-block` |
+| `bw-N`                          | 0–24    | `border-width` in `px`                       |                                                 |
+| `r-N`                           | 0–300   | `border-radius` in `px`                      |                                                 |
 
 Why the unit lives in the family: a class name cannot carry a unit without becoming
 unreadable, so `w-60` is 60%, `w-p-480` is 480px, `h-72` is 72vh, `h-p-72` is 72px.
@@ -30,64 +30,64 @@ Line height has no unit at all and cannot contain a dot, hence the thousandths.
 
 ## Layout
 
-| class | CSS |
-| --- | --- |
-| `container` | `max-width: $content`, centred, zero padding |
-| `container wide` | releases the width limit, full bleed |
-| `flex` | `display: flex` |
-| `rowrap` | `flex-flow: row wrap` |
-| `oh` | `overflow: hidden` |
+| class            | CSS                                          |
+| ---------------- | -------------------------------------------- |
+| `container`      | `max-width: $content`, centred, zero padding |
+| `container wide` | releases the width limit, full bleed         |
+| `flex`           | `display: flex`                              |
+| `rowrap`         | `flex-flow: row wrap`                        |
+| `oh`             | `overflow: hidden`                           |
 
 ## Alignment
 
-| class | Emmet | CSS |
-| --- | --- | --- |
-| `aic` | `ai:c` | `align-items: center` |
-| `aifs` | `ai:fs` | `align-items: flex-start` |
-| `aife` | `ai:fe` | `align-items: flex-end` |
-| `jcc` | `jc:c` | `justify-content: center` |
-| `jcfs` | `jc:fs` | `justify-content: flex-start` |
-| `jcfe` | `jc:fe` | `justify-content: flex-end` |
-| `jcsa` | `jc:sa` | `justify-content: space-around` |
-| `jcsb` | `jc:sb` | `justify-content: space-between` |
-| `center` | | alias of `jcc` |
+| class    | Emmet   | CSS                              |
+| -------- | ------- | -------------------------------- |
+| `aic`    | `ai:c`  | `align-items: center`            |
+| `aifs`   | `ai:fs` | `align-items: flex-start`        |
+| `aife`   | `ai:fe` | `align-items: flex-end`          |
+| `jcc`    | `jc:c`  | `justify-content: center`        |
+| `jcfs`   | `jc:fs` | `justify-content: flex-start`    |
+| `jcfe`   | `jc:fe` | `justify-content: flex-end`      |
+| `jcsa`   | `jc:sa` | `justify-content: space-around`  |
+| `jcsb`   | `jc:sb` | `justify-content: space-between` |
+| `center` |         | alias of `jcc`                   |
 
 ## Text
 
-| class | CSS | note |
-| --- | --- | --- |
-| `tl` | `text-align: left` | |
-| `tc` | `text-align: center` | |
-| `tr` | `text-align: right` | becomes centred below `sm` |
-| `upp` | `text-transform: uppercase` | |
-| `ff-basic` | `font-family: $basic` | |
-| `ff-intro` | `font-family: $intro` | |
+| class      | CSS                         | note                       |
+| ---------- | --------------------------- | -------------------------- |
+| `tl`       | `text-align: left`          |                            |
+| `tc`       | `text-align: center`        |                            |
+| `tr`       | `text-align: right`         | becomes centred below `sm` |
+| `upp`      | `text-transform: uppercase` |                            |
+| `ff-basic` | `font-family: $basic`       |                            |
+| `ff-intro` | `font-family: $intro`       |                            |
 
 ## Spacing shortcuts
 
-| class | CSS |
-| --- | --- |
-| `ma` | `margin-left: auto`, `margin-right: auto` |
-| `mla` | `margin-left: auto` |
-| `mra` | `margin-right: auto` |
+| class | CSS                                       |
+| ----- | ----------------------------------------- |
+| `ma`  | `margin-left: auto`, `margin-right: auto` |
+| `mla` | `margin-left: auto`                       |
+| `mra` | `margin-right: auto`                      |
 
 ## Images
 
-| class | CSS |
-| --- | --- |
+| class  | CSS                 |
+| ------ | ------------------- |
 | `obfc` | `object-fit: cover` |
 
 ## Responsive helpers
 
 These carry the breakpoint inside the class, so one class replaces two.
 
-| class | behaviour |
-| --- | --- |
-| `m-show` | hidden by default, shown below `sm` |
-| `m-hide` | shown by default, hidden below `sm` |
-| `m-block` | `display: block` below `sm`, plus 24px bottom margin |
-| `m-center` | centred text and box below `sm` |
-| `wide` | `min-width: 90%` and centred below `sm` |
+| class      | behaviour                                            |
+| ---------- | ---------------------------------------------------- |
+| `m-show`   | hidden by default, shown below `sm`                  |
+| `m-hide`   | shown by default, hidden below `sm`                  |
+| `m-block`  | `display: block` below `sm`, plus 24px bottom margin |
+| `m-center` | centred text and box below `sm`                      |
+| `wide`     | `min-width: 90%` and centred below `sm`              |
 
 Note the overloaded `m-` prefix: `m-b-24` is a margin, `m-block` is mobile behaviour.
 
@@ -95,10 +95,10 @@ Note the overloaded `m-` prefix: `m-b-24` is a margin, `m-block` is mobile behav
 
 Three families are generated from `$palette` in `_variables.sass`:
 
-| class | CSS |
-| --- | --- |
-| `c-NAME` | `color` |
-| `bg-NAME` | `background-color` |
+| class     | CSS                                       |
+| --------- | ----------------------------------------- |
+| `c-NAME`  | `color`                                   |
+| `bg-NAME` | `background-color`                        |
 | `bc-NAME` | `border-color` plus `border-style: solid` |
 
 Names in the default palette: `dark`, `grey`, `medium`, `light`, `blue`, `pink`, `yellow`,
@@ -107,12 +107,28 @@ Names in the default palette: `dark`, `grey`, `medium`, `light`, `blue`, `pink`,
 `theme` and `accent` are aliases of other palette entries, meant to be repointed per
 project. Use them in components so a project can be recoloured without touching markup.
 
-| class | CSS |
-| --- | --- |
+A second list sits next to the palette:
+
+```sass
+$light-colors: ("grey", "light", "white")
+```
+
+These are the colours a white label cannot sit on. A solid button in one of them gets dark
+text, and so does an outline button on hover, once its background is filled.
+
+An outline button at rest keeps the button colour as its label. Light outline buttons are
+built for dark sections, where a white border with a white label is what you want.
+
+Add the name of any new light colour to this list, otherwise its solid button keeps a white
+label on a light background. Aliases are covered automatically: if `theme` points at one of
+these colours, it is treated as light too.
+
+| class    | CSS                                                     |
+| -------- | ------------------------------------------------------- |
 | `dashed` | `border-style: dashed`, overrides the solid from `bc-*` |
 | `double` | `border-style: double`, overrides the solid from `bc-*` |
-| `b-none` | `border: none` |
-| `bg-tr` | `background-color: transparent` |
+| `b-none` | `border: none`                                          |
+| `bg-tr`  | `background-color: transparent`                         |
 
 ## Why `!important`
 

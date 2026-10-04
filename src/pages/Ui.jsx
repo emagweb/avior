@@ -57,6 +57,23 @@ const Ui = () => {
         </div>
       </section>
 
+      <section>
+        <h3 className='title'>Light outline on a dark background</h3>
+        <p>
+          This is what the light colours are for. On a dark section a white or grey outline
+          button keeps its own colour as the label, and fills in on hover.
+        </p>
+        <div className='bg-dark r-8 p-y-40 p-x-24'>
+          <div className='flex rowrap aic'>
+            {['white', 'light', 'grey', 'theme'].map((name) => (
+              <a href='#top' key={name} className={`button ${name} outline m-r-16 m-b-16`}>
+                {name} outline
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Row title='Solid' />
       <Row title='Outline' modifier='outline' />
       <Row title='Solid, r-4' modifier='r-4' />

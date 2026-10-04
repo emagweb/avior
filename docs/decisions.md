@@ -103,3 +103,34 @@ every paragraph and figure fights that.
 present.
 
 **Remove when:** Bootstrap is gone, if the browser default is acceptable.
+
+---
+
+## Button text colour comes from a list of names, not from a calculation
+
+**Where:** `src/styles/inc/_variables.sass`, `src/styles/components/_buttons.sass`
+
+```sass
+$light-colors: ("grey", "light", "white")
+```
+
+**Why:** a white label is unreadable on a light button, so solid buttons in those colours
+get dark text.
+
+Outline buttons are deliberately left alone at rest, and their label keeps the button
+colour. That is the whole point of a light outline button: it belongs on a dark section,
+where a white border with a white label is exactly right. Judged against a white page it
+looks broken, which it is not — see the dark block on the `/ui` page.
+
+On hover the background fills with the button colour, so the label does switch there:
+white, or dark when the fill is light.
+The lightness could be measured instead — `color.channel($color, "lightness", $space: oklch)`
+with a threshold — but the threshold then decides the design silently, and borderline
+colours like yellow and green land on whichever side of the cutoff they happen to fall.
+A list says out loud which colours are considered light.
+
+`is-light()` also compares the colour value, not just the name, so `theme` and `accent`
+are covered whenever they point at one of the listed colours.
+
+**If a new light colour is added to `$palette` and not to this list:** its button keeps a
+white label on a light background and the text disappears. Nothing warns about it.

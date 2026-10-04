@@ -17,6 +17,12 @@ dictionary. No external grid, no UI library.
 - Keep the `inc/` + `components/` structure. Theme changes belong in
   `inc/_variables.sass`, everything else is the engine.
 - Build pages with the `Page` template. Menus are data in `src/data/menu.js`.
+- When a colour is added to `$palette`, check whether a solid button in that colour needs
+  dark text. Light colours go into `$light-colors` in `inc/_variables.sass`, otherwise the
+  label stays white and becomes unreadable. If the colour is borderline, ask the user
+  rather than deciding for them. Outline buttons are not part of this: their label keeps
+  the button colour on purpose, because a light outline button is meant for a dark
+  background. Do not "fix" it.
 - Write code, comments, copy and commit messages in English.
 - Keep the Sass files free of comments. Usage goes to `README.md`, the class reference to
   `docs/utilities.md`, reasoning to `docs/decisions.md`.
