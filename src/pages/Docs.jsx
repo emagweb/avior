@@ -2,7 +2,8 @@ import { Page } from '../components/Page'
 
 const Docs = () => {
   return (
-    <Page title='Docs' meta='Short cheat sheet. The full version is in the README.'>
+    <Page title='Docs' meta='Short cheat sheet. The full version is in the README.'
+      description='Cheat sheet for Avior class names: the naming rule, the numeric families, colours, the container and project setup.'>
       <section>
         <h3 className='title'>Naming rule</h3>
         <p>First letters of the property, then first letters of the value:</p>

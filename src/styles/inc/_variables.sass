@@ -1,17 +1,18 @@
-$dark: #1E1E1E
-$grey: #F5F5F5
-$medium: #737373
-$light: #F9F9F9
-$blue: #3792FA
-$pink: #FF2790
-$yellow: #FAAD14
-$violet: #4E18AD
-$orange: #FF3F40
-$red: #BE1969
-$green: #99B142
-$white: #FFFFFF
-$theme: $white
-$accent: $pink
+$dark: #1E1E1E !default
+$grey: #F5F5F5 !default
+$medium: #737373 !default
+$light: #F9F9F9 !default
+$blue: #3792FA !default
+$pink: #FF2790 !default
+$yellow: #FAAD14 !default
+$violet: #4E18AD !default
+$orange: #FF3F40 !default
+$red: #BE1969 !default
+$green: #99B142 !default
+$white: #FFFFFF !default
+
+$theme: $white !default
+$accent: $pink !default
 
 $palette: ("dark": $dark,
            "grey": $grey,
@@ -26,15 +27,34 @@ $palette: ("dark": $dark,
            "green": $green,
            "white": $white,
            "theme": $theme,
-           "accent": $accent)
+           "accent": $accent) !default
 
-$light-colors: ("grey", "light", "white")
+$light-colors: ("grey", "light", "white") !default
 
-$basic: 'Google Sans Flex', sans-serif
-$intro: 'Google Sans Flex', sans-serif
+$basic: 'Google Sans Flex', sans-serif !default
+$intro: 'Google Sans Flex', sans-serif !default
 
-$content: 1200px
-$radius: 25px
+$content: 1200px !default
+$radius: 25px !default
+
+$columns: 12 !default
+
+$step: 4 !default
+$max-space: 160 !default
+$max-size: 800 !default
+
+$step-percent: 5 !default
+$max-percent: 100 !default
+
+$step-auto: 20 !default
+$min-auto: 100 !default
+$max-auto: 400 !default
+
+$max-font: 72 !default
+$step-weight: 100 !default
+$step-line: 5 !default
+$max-radius: 60 !default
+$max-border: 24 !default
 
 =placeholder
   &::-webkit-input-placeholder

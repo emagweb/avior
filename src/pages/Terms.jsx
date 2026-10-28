@@ -4,7 +4,8 @@ import { Page } from '../components/Page'
 // and have it reviewed for your jurisdiction.
 const Terms = () => {
   return (
-    <Page title='Terms of Use' meta='Template. Last updated: add a date'>
+    <Page title='Terms of Use' meta='Template. Last updated: add a date'
+      description='Terms of use template for a project built on Avior.'>
       <section>
         <h3 className='title'>1. Acceptance</h3>
         <p>

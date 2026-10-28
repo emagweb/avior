@@ -4,7 +4,8 @@ import { Page } from '../components/Page'
 // and have it reviewed for your jurisdiction.
 const Privacy = () => {
   return (
-    <Page title='Privacy Policy' meta='Template. Last updated: add a date'>
+    <Page title='Privacy Policy' meta='Template. Last updated: add a date'
+      description='Privacy policy template for a project built on Avior.'>
       <section>
         <h3 className='title'>1. General</h3>
         <p>

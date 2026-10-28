@@ -2,7 +2,8 @@ import { Page } from '../components/Page'
 
 const Contact = () => {
   return (
-    <Page title='Contact' meta='Template. Replace with your own details.'>
+    <Page title='Contact' meta='Template. Replace with your own details.'
+      description='How to get in touch about Avior and where to report bugs or propose changes.'>
       <section>
         <h3 className='title'>Email</h3>
         <p>

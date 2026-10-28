@@ -20,7 +20,8 @@ const Row = ({ title, modifier = '' }) => (
 
 const Ui = () => {
   return (
-    <Page title='Buttons' meta='Hover a button: solid turns into outline, outline fills in.'>
+    <Page title='Buttons' meta='Hover a button: solid turns into outline, outline fills in.'
+      description='Every button variant in Avior: solid and outline across the palette, hover states, the mini size and radius overrides.'>
       <section>
         <h3 className='title'>Default</h3>
         <div className='flex rowrap aic'>

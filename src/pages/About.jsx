@@ -2,7 +2,8 @@ import { Page } from '../components/Page'
 
 const About = () => {
   return (
-    <Page title='About' meta='What this is and why'>
+    <Page title='About' meta='What this is and why'
+      description='What Avior is, why class names are derived from the Emmet dictionary instead of a framework vocabulary, and what state the project is in.'>
       <section>
         <h3 className='title'>What this is</h3>
         <p>

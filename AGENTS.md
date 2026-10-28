@@ -17,6 +17,13 @@ dictionary. No external grid, no UI library.
 - Keep the `inc/` + `components/` structure. Theme changes belong in
   `inc/_variables.sass`, everything else is the engine.
 - Build pages with the `Page` template. Menus are data in `src/data/menu.js`.
+- Give every page a `title` and a `description` prop. `Page` turns them into the document
+  title, the meta description and the Open Graph tags through `hooks/useMeta.js`. Without
+  a description the page inherits the site-wide one and looks identical in search results.
+- One `h1` per page. `Page` renders the `title` prop as the `h1`, so do not add another.
+- `example.com` in `public/sitemap.xml` and `public/robots.txt` is a deliberate
+  placeholder, as are the relative Open Graph URLs and the missing canonical link. Run
+  `yarn check` to list them. Do not invent a domain — ask the user for theirs.
 - When a colour is added to `$palette`, check whether a solid button in that colour needs
   dark text. Light colours go into `$light-colors` in `inc/_variables.sass`, otherwise the
   label stays white and becomes unreadable. If the colour is borderline, ask the user

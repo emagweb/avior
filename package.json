@@ -23,12 +23,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "check": "node scripts/check-publish.mjs",
     "build": "rsbuild build",
     "start": "rsbuild dev --open",
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.8",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-router-dom": "^7.12.0"

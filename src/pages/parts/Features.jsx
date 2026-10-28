@@ -1,34 +1,46 @@
 const features = [
   {
-    title: 'Names from Emmet',
-    desc: 'aic, jcsb, g-24 — first letters of the property and the value. No dictionary to learn.'
+    title: "Names you already know",
+    desc: "align-items: center is aic, gap is g-24, max-width is maw. The abbreviations come from the Emmet dictionary, so there is no second vocabulary to learn.",
   },
   {
-    title: 'Values from the design',
-    desc: 'You see 104px, you write p-t-104. No intermediate scale, no tokens.'
+    title: "Values from the design",
+    desc: "You see 104px in the mockup, you write p-t-104. No scale to translate, no token to invent, and nothing blocking you when a value is not in the scale.",
   },
   {
-    title: 'One place to configure',
-    desc: 'Colours and fonts live in inc/_variables.sass. No other file needs editing.'
+    title: "One file to configure",
+    desc: "Colours, fonts, container width and corner radius live in one variables file. Every class and component follows from it.",
   },
-]
+  {
+    title: "Nothing else in the box",
+    desc: "React, Rsbuild and Sass. No external grid, no UI library, no runtime. The grid is plain CSS Grid with twelve columns.",
+  },
+  {
+    title: "Readable markup",
+    desc: "Six utilities fit in 47 characters where a long-form framework needs 150. Short enough to read the layout straight from the className.",
+  },
+  {
+    title: "Made for agents too",
+    desc: "Rules live in AGENTS.md, the class reference in docs, and every non-obvious declaration is explained in a decisions log. An agent can extend the system without breaking it.",
+  },
+];
 
 const Features = () => {
   return (
-    <section id='features' className='p-y-104'>
-      <div className='container tc p-x-24'>
-        <h2 className='title-intro p-b-40'>What We Offer</h2>
-        <div className='row'>
+    <section id="features" className="p-y-104">
+      <div className="container p-x-24">
+        <h2 className="title-intro tc p-b-64">What you get</h2>
+        <div className="cols-3 g-40">
           {features.map(({ title, desc }) => (
-            <div className='col-lg-4 p-y-24' key={title}>
-              <h3 className='title-mini p-b-16 c-pink'>{title}</h3>
-              <p className='title fw-400'>{desc}</p>
+            <div key={title}>
+              <h3 className="title-mini p-b-16 c-accent">{title}</h3>
+              <p>{desc}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export { Features }
+export { Features };

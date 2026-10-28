@@ -41,19 +41,17 @@ Sass files carry no comments. There are three places instead:
 Adding a utility family means adding a row to `docs/utilities.md` in the same commit.
 
 Check that file before deleting a declaration that looks redundant. Several of them exist
-only because Bootstrap, the import order or a name collision fights them, and nothing in
-the code says so.
+only because a component rule, the load order or a name collision fights them, and
+nothing in the code says so.
 
-## Why `_helpers.sass` is imported last
+## Why `_helpers.sass` loads last
 
-Bootstrap generates its utilities with `!important` — over a thousand occurrences. A
-utility that has to win against `w-100` or the padding of `col-lg-4` must therefore be
-`!important` too, and must come later in the cascade. That is the only reason for the
-import order, and it is also why utilities in this project carry `!important` while
-component styles do not.
+A utility is a single class, which is the weakest thing in the cascade. A component rule
+is a descendant selector and outranks it: `.page section p` scores two classes and an
+element against one class for `.fz-32`. Loading utilities last is therefore not enough on
+its own, which is why they also carry `!important` while component styles stay clean.
 
-Once Bootstrap is gone, the `!important` in utilities can be revisited, but the ordering
-rule stays: specific components first, utilities last.
+The ordering rule stands regardless: components first, utilities last.
 
 ## Theme versus engine
 
@@ -71,8 +69,8 @@ the value belongs in variables instead.
 3. Decide the unit and encode it in the family, not in the value: the bare family is
    percent or vh, `-p-` is pixels. `w-60` is 60%, `w-p-480` is 480px.
 4. If the value cannot contain a dot, scale it: `lh-150` is `line-height: 1.5`.
-5. Check the generated name does not collide with Bootstrap while Bootstrap is still
-   wired up. `h-100` already does — it means `100vh` here and `100%` there.
+5. Give it a step and a limit from `inc/_variables.sass` rather than a hardcoded range,
+   and check the step does not delete values the markup already uses.
 6. Compile and look at the output size. Generated ranges grow fast.
 
 ## Breakpoints
@@ -87,9 +85,11 @@ tens of thousands of rules.
 
 ## What is deliberately missing
 
-No external grid. `row` and `col-*` still come from Bootstrap and will be replaced by a
-CSS Grid implementation: `grid`, `col-1..12`, `cols-N`, `cols-auto-N`. Grid is the right
-model for rows and columns — no wrapper row, no negative margins, native gap.
+No external grid and no CSS framework. The grid is plain CSS Grid in `inc/_grid.sass`:
+`grid`, `cols-N`, `col-1..12`, `cols-auto-N`. Grid is the right model for rows and
+columns — no wrapper row, no negative margins, native gap. Bootstrap was used as a
+crutch early on and has been removed; `inc/_reset.sass` replaces the parts of its reboot
+the layout relied on.
 
 No UI component library. Utilities are meant to lay out the page around components, not
 to replace them. If a project needs a data grid or a date picker, it adds one itself.
@@ -112,13 +112,13 @@ Write those in a component file under `components/`. Anything interactive will n
 
 ## Roadmap
 
-1. `!default` on every variable, plus configurable step and limits for generated ranges
-2. Full flexbox dictionary: `ac-*`, `as-*`, `fxd-*`, `fxw-*`, `fxf-*`, `ord-*`
-3. `maw` / `miw` / `mah` / `mih`
-4. Own grid: `grid`, `col-*`, `cols-N`, `cols-auto-N`
-5. Breakpoint prefixes for the whitelist
-6. Button colour variants and outline style
-7. Forms and card
-8. Drop Bootstrap
-9. Move from `@import` to `@use` / `@forward`
-10. Build-time check for class names used in markup but missing from the CSS
+1. Full flexbox dictionary: `ac-*`, `as-*`, `fxd-*`, `fxw-*`, `fxf-*`, `ord-*`
+2. `maw` / `miw` / `mah` / `mih`
+3. Breakpoint prefixes for a whitelist of classes
+4. Forms and card
+5. Utilities for `position`, `z-index`, shadows and transitions
+6. Build-time check for class names used in markup but missing from the CSS
+
+Done: `!default` and configurable generation limits, the CSS Grid implementation, button
+variants with outline and sizes, the move from `@import` to `@use`/`@forward`, and
+dropping Bootstrap.

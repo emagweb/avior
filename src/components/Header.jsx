@@ -10,9 +10,9 @@ const Header = ({ menu = main, brand = 'Avior' }) => {
   return (
     <header className="p-y-24" id='top'>
       <div className='container p-x-24'>
-        <figure id="logo">
-          <a href="/"><img src={logo} alt='Logotype' width={52} height={32} className='p-b-8' /></a>
-          <a href="/"><span className='fw-500'>{brand}</span></a>
+        <figure className='logo'>
+          <a href='/'><img src={logo} alt='Avior' width={68} height={40} /></a>
+          <a href='/'><span className='fw-500'>{brand}</span></a>
         </figure>
         <Nav items={menu} />
       </div>

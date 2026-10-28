@@ -4,7 +4,8 @@ import { Page } from '../components/Page'
 // and have it reviewed for your jurisdiction.
 const Cookie = () => {
   return (
-    <Page title='Cookie Policy' meta='Template. Last updated: add a date'>
+    <Page title='Cookie Policy' meta='Template. Last updated: add a date'
+      description='Cookie policy template for a project built on Avior.'>
       <section>
         <h3 className='title'>1. What cookies are</h3>
         <p>

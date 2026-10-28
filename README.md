@@ -108,7 +108,7 @@ Use them in components so a project can be recoloured without touching markup.
 the markup. `wide` releases the width limit for full-bleed sections. The maximum width is
 the `$content` variable.
 
-## Structure and import order
+## Structure and load order
 
 `custom.sass` is the only entry point. The order inside it matters:
 `inc/_helpers.sass` must stay last, because it overrides everything above it.
@@ -116,17 +116,60 @@ the `$content` variable.
 ```
 src/styles/
   custom.sass              the only entry point
+  _core.sass               forwards variables and breakpoint mixins
   inc/
-    _variables.sass        colours and fonts — the file you edit
+    _variables.sass        the file you edit: theme and generation limits
     _responsive.sass       mixins =v-xl =v-lg =v-md =v-sm =v-xs
-    _helpers.sass          generated utilities, imported last
+    _grid.sass             grid, cols-*, col-*, gaps
+    _helpers.sass          generated utilities, loaded last
   components/
     _colors.sass           .c-* .bg-* .bc-*
-    _base.sass             body, typography, .container
+    _base.sass             body, resets, links
     _buttons.sass
     _titles.sass           .title .title-intro .title-mini
     _header.sass
+    _footer.sass
+    _page.sass
 ```
+
+## Configuration
+
+Every variable carries `!default`, so a project can set the theme without editing the
+library. Configure the first line of `custom.sass`:
+
+```sass
+@use "core" with ($accent: #0066FF, $radius: 4px, $content: 1440px, $step: 8)
+```
+
+Colours, fonts, `$content`, `$radius`, and the generation limits are all configurable.
+The limits decide how large the stylesheet is:
+
+| variable                         | default | what it controls                         |
+| -------------------------------- | ------- | ---------------------------------------- |
+| `$step`                          | 4       | step for spacing, pixel sizes and radius |
+| `$max-space`                     | 160     | largest padding, margin, spacer and gap  |
+| `$max-size`                      | 800     | largest `w-p-*` and `h-p-*`              |
+| `$step-percent` / `$max-percent` | 5 / 100 | percentage widths and `vh` heights       |
+| `$max-font`                      | 72      | largest `fz-*`                           |
+| `$columns`                       | 12      | columns in the grid                      |
+
+With the defaults the compiled stylesheet is about 97 KB. A step of 1 and the widest
+limits push it past 570 KB, which is what every value being available costs.
+
+## Page metadata
+
+`Page` takes a `title` and a `description` and feeds them to `hooks/useMeta.js`, which
+sets the document title, the meta description and the matching Open Graph tags on every
+route. The `title` is also rendered as the page `h1`.
+
+```jsx
+<Page title='About' description='What this is and why'>
+```
+
+Without it a single page app reports one title for every route, and search results look
+identical for all of them. The home page keeps the site title and sets only a description.
+
+See the publishing checklist below for the parts that need your domain.
 
 ## Components
 
@@ -184,16 +227,50 @@ blocks marked `--- GDPR ---` in the hook: the first denies storage until consent
 second exports `grantAnalyticsConsent` and `denyAnalyticsConsent` to call from your
 consent banner.
 
+## Before you publish
+
+The starter ships with a placeholder domain, because it cannot know yours. Run the check
+at any time:
+
+```bash
+yarn check
+```
+
+It lists every spot that still needs attention, and never fails a build. There are four:
+
+| what                                           | where                |
+| ---------------------------------------------- | -------------------- |
+| the domain, in the sitemap entries             | `public/sitemap.xml` |
+| the domain, in the `Sitemap:` line             | `public/robots.txt`  |
+| `og:image`, which has to be an absolute URL    | `public/index.html`  |
+| a `canonical` link, which is missing by design | `public/index.html`  |
+
+Why absolute URLs matter: crawlers and social networks do not resolve a relative path in
+a meta tag. `og:image` pointing at `/logo512.png` yields no preview image at all, so it
+has to read `https://yourdomain.com/logo512.png`.
+
+Why there is no `canonical` by default: a canonical link naming the wrong host is worse
+than none, since it tells search engines to index an address that is not yours. Add it
+once you have a domain:
+
+```html
+<link rel="canonical" href="https://yourdomain.com/" />
+```
+
+Also worth a look before going live: `theme_color` and `background_color` in
+`public/manifest.json`, the copyright line in `Footer`, and the contact details on the
+Contact page.
+
 ## Limitations
 
-- Utilities are generated across full ranges, so the stylesheet is large. Trim the loops in
-  `_helpers.sass` if size matters more than having every value available.
-- Styles use `@import`. Dart Sass deprecated it and will remove it in 3.0, so a move to
-  `@use`/`@forward` is pending.
-- There is no own grid yet: `row` and `col-*` still come from Bootstrap, which is wired up
-  in `src/index.jsx` and will be removed once the grid, card and form classes land.
-- No utilities for `position`, `z-index`, shadows or transitions yet — write those in a
-  component file.
+- No form or card components yet. A project that needs them writes its own for now.
+- No utilities for `position`, `z-index`, shadows or transitions — write those in a
+  component file under `components/`.
+- The flexbox set is partial: alignment and wrapping are there, but `ac-*`, `as-*`,
+  `fxd-*`, `fxw-*` and `ord-*` are still missing.
+- Breakpoint prefixes such as `md-cols-2` are not generated yet. Responsive behaviour is
+  either baked into a class (`m-hide`, `tr`, `s-N`) or written in a component file.
+- Headings are a fixed `rem` scale. Below the `xs` breakpoint only `h1` and `h2` shrink.
 
 ## Contributing
 

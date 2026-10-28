@@ -1,0 +1,34 @@
+@use "../core" as *
+@use "sass:math"
+
+.grid
+  display: grid
+  grid-template-columns: repeat($columns, 1fr)
+  +v-sm
+    grid-template-columns: 1fr
+
+@for $i from 1 through $columns
+  .cols-#{$i}
+    display: grid
+    grid-template-columns: repeat($i, 1fr)
+    +v-sm
+      grid-template-columns: 1fr
+  .col-#{$i}
+    grid-column: span $i
+    +v-sm
+      grid-column: span 1
+
+@for $n from math.div($min-auto, $step-auto) through math.div($max-auto, $step-auto)
+  $i: $n * $step-auto
+  .cols-auto-#{$i}
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax($i * 1px, 1fr))
+
+@for $n from 0 through math.div($max-space, $step)
+  $i: $n * $step
+  .g-#{$i}
+    gap: $i * 1px
+  .gcg-#{$i}
+    column-gap: $i * 1px
+  .grg-#{$i}
+    row-gap: $i * 1px
