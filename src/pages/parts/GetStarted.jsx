@@ -16,15 +16,15 @@ const steps = [
 const GetStarted = () => {
   return (
     <section id='get-started' className='p-y-104'>
-      <div className='container p-x-24'>
-        <h2 className='title-intro tc p-b-16 c-accent'>Get Started</h2>
-        <p className='title w-60 ma tc p-b-64'>
+      <div className='container tc p-x-24'>
+        <h2 className='title-section'>Get Started</h2>
+        <p className='title fw-400 w-60 wide ma'>
           Three steps, and the only file you are expected to edit is the variables one.
         </p>
-        <div className='cols-3 g-40 p-b-64'>
+        <div className='cols-3 g-40 m-t-64 p-b-64 tl'>
           {steps.map(({ title, desc }) => (
             <div key={title}>
-              <h3 className='title-mini p-b-16'>{title}</h3>
+              <h3 className='title-card'>{title}</h3>
               <p>{desc}</p>
             </div>
           ))}

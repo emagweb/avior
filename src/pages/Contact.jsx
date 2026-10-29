@@ -7,7 +7,7 @@ const Contact = () => {
       <section>
         <h3 className='title'>Email</h3>
         <p>
-          <a href='mailto:hello@example.com' className='c-pink'>hello@example.com</a>
+          <a href='mailto:hello@example.com'>hello@example.com</a>
         </p>
       </section>
       <section>

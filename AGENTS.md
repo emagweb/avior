@@ -21,6 +21,14 @@ dictionary. No external grid, no UI library.
   title, the meta description and the Open Graph tags through `hooks/useMeta.js`. Without
   a description the page inherits the site-wide one and looks identical in search results.
 - One `h1` per page. `Page` renders the `title` prop as the `h1`, so do not add another.
+- Style a heading with one class from the `.title` family and nothing else: no `fw-*`, no
+  `tc`, no `p-b-*`, no colour. The class owns size, weight, line-height and bottom gap,
+  including the responsive steps. Alignment and width go on the element around the
+  heading. The list is in [docs/utilities.md](docs/utilities.md); add a variant there
+  rather than patching a heading in markup.
+- `title-intro` and `title-intro-sub` are the hero only. Below the hero the biggest
+  heading is `title-section`. Do not reach for an `intro` class to make something stand
+  out — the hero is what it marks.
 - `example.com` in `public/sitemap.xml` and `public/robots.txt` is a deliberate
   placeholder, as are the relative Open Graph URLs and the missing canonical link. Run
   `yarn check` to list them. Do not invent a domain — ask the user for theirs.

@@ -28,12 +28,12 @@ const features = [
 const Features = () => {
   return (
     <section id="features" className="p-y-104">
-      <div className="container p-x-24">
-        <h2 className="title-intro tc p-b-64">What you get</h2>
-        <div className="cols-3 g-40">
+      <div className="container tc p-x-24">
+        <h2 className="title-section">What you get</h2>
+        <div className="cols-3 g-40 m-t-64 tl">
           {features.map(({ title, desc }) => (
             <div key={title}>
-              <h3 className="title-mini p-b-16 c-accent">{title}</h3>
+              <h3 className="title-card">{title}</h3>
               <p>{desc}</p>
             </div>
           ))}

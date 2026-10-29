@@ -126,7 +126,8 @@ src/styles/
     _colors.sass           .c-* .bg-* .bc-*
     _base.sass             body, resets, links
     _buttons.sass
-    _titles.sass           .title .title-intro .title-mini
+    _titles.sass           the .title family, the only way to style a heading
+    _logo.sass             .logo in the header and its footer variant
     _header.sass
     _footer.sass
     _page.sass

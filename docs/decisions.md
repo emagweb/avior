@@ -202,3 +202,49 @@ colour class when it should stand out.
 **Headings are static now.** Bootstrap shrank them on narrow screens through its own
 responsive sizing. The reset uses fixed `rem` sizes, and the `.content` block in
 `_helpers.sass` reduces `h1` and `h2` below the `xs` breakpoint instead.
+
+---
+
+## The logo is styled by element, not by utility classes
+
+**Where:** `src/styles/components/_logo.sass`
+**Why:** Every project replaces the logo with its own file, and the mark, the wordmark and
+their spacing change together with it. Carrying that look in the markup as
+`flex`, `fz-20`, `fw-500`, `p-l-8` meant editing two components to retune one element, and
+the same values were repeated in the header and in the footer. One file now owns the
+whole block: the link, the image and the wordmark next to it.
+**The image is sized by height alone.** `height: 24px` with `width: auto` keeps the
+aspect ratio of whatever file is dropped in. The previous `width={40} height={24}`
+attributes squeezed the shipped logo: it is 68×40, a ratio of 1.7, and 40×24 is 1.667.
+**Footer overrides stay in `_footer.sass`.** `opacity: .5` and `filter: grayscale(1)`
+describe the mood of the footer rather than the logo itself, and `footer .logo` outranks
+`.logo` on specificity, so the import order does not matter.
+
+---
+
+## Headings carry one class, and the class carries everything
+
+**Where:** `src/styles/components/_titles.sass`
+**Why:** The old set was three classes — `title`, `title-intro`, `title-mini` — so every
+heading needed help from utilities to look right: `fw-800` here, `tc p-b-64` there, a
+colour on top. Two headings in the hero ended up the same 40px, one from the `h1` reset
+and one from `title-intro`, and the hierarchy disappeared. The scale now has eight steps
+and each class sets size, weight, line-height and bottom gap, so a heading needs no
+second class and retuning one place changes every page.
+**The scale.** 64, 48, 40, 32, 24, 20, 18, 16, a 1.25 ratio rounded onto the 4px grid the
+rest of the system uses. Large headings are tighter (1.05–1.2) and small ones looser
+(1.35–1.5), the usual relation between size and leading.
+**Sizes are `rem`, not `em`.** With `em` a heading depended on the font size of whatever
+contained it, so the same class rendered differently in two places.
+**Each class steps down twice,** at `sm` and at `xs`. The responsive rules used to live in
+a `.content` block in `_helpers.sass` and were pinned to exact markup
+(`h3.title.w-60`), which stopped matching as soon as a heading moved. That block is gone.
+**`intro` is reserved for the hero.** Two classes carry it, `title-intro` and
+`title-intro-sub`, and they appear once each on the landing. A section heading further
+down the page is `title-section`, so the name says where a heading belongs instead of how
+loud it is.
+**Alignment and width stayed out.** They describe the block around the text, not the text,
+and leaving them out is what keeps the heading free of extra classes. A centred section
+puts `tc` on its container and `tl` back on the grid inside it.
+**The hero lead became a `<p>`.** It was an `h3` holding a sentence of body copy, which
+told search engines it was a heading and forced layout classes onto a heading.

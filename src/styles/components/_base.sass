@@ -1,20 +1,24 @@
 @use "../core" as *
 
+html
+  font-size: $root
+  font-weight: $weight
+  font-smooth: always
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  +v-motion
+    scroll-behavior: smooth
+
 body
   margin: 0
   color: $dark
   font-family: $basic
-  line-height: 1.5
+  line-height: $line
 
 p,
 figure
   margin: 0
   padding: 0
-
-.logo
-  display: flex
-  align-items: center
-  margin-right: 12px
 
 nav
   a

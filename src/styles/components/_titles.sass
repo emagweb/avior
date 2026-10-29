@@ -1,12 +1,58 @@
 @use "../core" as *
 
 .title
-  margin: 0
-  padding: 0
-  font-size: 1.5em
-  line-height: 1.65
+  margin: 0 0 24px
+  font-size: 1.5rem
+  font-weight: 500
+  line-height: 1.35
   &-intro
-    font-size: 2.5em
-  &-mini
-    font-size: 1.15em
+    margin: 0 0 24px
+    font-size: 4rem
+    font-weight: 700
+    line-height: 1.05
+    +v-sm
+      font-size: 2.75rem
+    +v-xs
+      font-size: 2.25rem
+    &-sub
+      margin: 0 0 24px
+      font-size: 2.5rem
+      font-weight: 600
+      line-height: 1.2
+      +v-sm
+        font-size: 2rem
+      +v-xs
+        font-size: 1.75rem
+  &-page
+    margin: 0 0 24px
+    font-size: 3rem
+    font-weight: 500
+    line-height: 1.1
+    +v-sm
+      font-size: 2.25rem
+    +v-xs
+      font-size: 2rem
+  &-section
+    margin: 0 0 24px
+    font-size: 3rem
     font-weight: 600
+    line-height: 1.2
+    +v-sm
+      font-size: 2.5rem
+    +v-xs
+      font-size: 2rem
+  &-sub
+    margin: 0 0 24px
+    font-size: 1.25rem
+    font-weight: 500
+    line-height: 1.4
+  &-card
+    margin: 0 0 24px
+    font-size: 1.125rem
+    font-weight: 600
+    line-height: 1.4
+  &-mini
+    margin: 0 0 24px
+    font-size: 1rem
+    font-weight: 600
+    line-height: 1.5

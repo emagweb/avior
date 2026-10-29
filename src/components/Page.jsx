@@ -19,8 +19,8 @@ const Page = ({ title, meta, description, menu, footerMenu, children }) => {
       <Header {...(menu && { menu })} />
       <main className='p-y-120'>
         <div className='container p-x-24'>
-          {title && <h1 className='title-intro'>{title}</h1>}
-          {meta && <p className='c-blue p-b-64 p-t-24'>{meta}</p>}
+          {title && <h1 className='title-page'>{title}</h1>}
+          {meta && <p className='p-b-64 p-t-24'>{meta}</p>}
           <div className="tl p-t-40">
             {children}
           </div>

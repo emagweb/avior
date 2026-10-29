@@ -10,22 +10,22 @@ of the value. The numeric part is the value itself, taken from the design.
 Every family is generated with a step, and both the step and the limit are variables.
 The defaults below come from `inc/_variables.sass`.
 
-| class | range | step | produces | note |
-| --- | --- | --- | --- | --- |
-| `w-N` | 0–100 | 5 | `width`, `min-width`, `max-width` in `%` | also sets `display: block` |
-| `h-N` | 0–100 | 5 | `height`, `min-height`, `max-height` in `vh` | also sets `display: block` |
-| `w-p-N` | 0–800 | 4 | the same three in `px` | |
-| `h-p-N` | 0–800 | 4 | the same three in `px` | |
-| `p-l-N` `p-r-N` `p-t-N` `p-b-N` | 0–160 | 4 | `padding` on one side, `px` | |
-| `p-x-N` `p-y-N` | 0–160 | 4 | `padding` on two sides, `px` | |
-| `m-l-N` `m-r-N` `m-t-N` `m-b-N` | 0–160 | 4 | `margin` on one side, `px` | |
-| `m-x-N` `m-y-N` | 0–160 | 4 | `margin` on two sides, `px` | |
-| `s-N` | 0–160 | 4 | vertical spacer `N` px tall | `clear: both`, halves below `sm` |
-| `fz-N` | 0–72 | 1 | `font-size` in `px` | |
-| `fw-N` | 100–900 | 100 | `font-weight` | |
-| `lh-N` | 100–500 | 5 | `line-height` as `N × 0.001` | `lh-150` is `1.5`; sets `display: inline-block` |
-| `bw-N` | 0–24 | 1 | `border-width` in `px` | |
-| `r-N` | 0–60 | 4 | `border-radius` in `px` | |
+| class                           | range   | step | produces                                     | note                                            |
+| ------------------------------- | ------- | ---- | -------------------------------------------- | ----------------------------------------------- |
+| `w-N`                           | 0–100   | 5    | `width`, `min-width`, `max-width` in `%`     | also sets `display: block`                      |
+| `h-N`                           | 0–100   | 5    | `height`, `min-height`, `max-height` in `vh` | also sets `display: block`                      |
+| `w-p-N`                         | 0–800   | 4    | the same three in `px`                       |                                                 |
+| `h-p-N`                         | 0–800   | 4    | the same three in `px`                       |                                                 |
+| `p-l-N` `p-r-N` `p-t-N` `p-b-N` | 0–160   | 4    | `padding` on one side, `px`                  |                                                 |
+| `p-x-N` `p-y-N`                 | 0–160   | 4    | `padding` on two sides, `px`                 |                                                 |
+| `m-l-N` `m-r-N` `m-t-N` `m-b-N` | 0–160   | 4    | `margin` on one side, `px`                   |                                                 |
+| `m-x-N` `m-y-N`                 | 0–160   | 4    | `margin` on two sides, `px`                  |                                                 |
+| `s-N`                           | 0–160   | 4    | vertical spacer `N` px tall                  | `clear: both`, halves below `sm`                |
+| `fz-N`                          | 0–72    | 1    | `font-size` in `px`                          |                                                 |
+| `fw-N`                          | 100–900 | 100  | `font-weight`                                |                                                 |
+| `lh-N`                          | 100–500 | 5    | `line-height` as `N × 0.001`                 | `lh-150` is `1.5`; sets `display: inline-block` |
+| `bw-N`                          | 0–24    | 1    | `border-width` in `px`                       |                                                 |
+| `r-N`                           | 0–60    | 4    | `border-radius` in `px`                      |                                                 |
 
 Border width and font size keep a step of 1, because `bw-2` and `fz-13` are ordinary
 values. Font weight only ever moves in hundreds.
@@ -34,15 +34,15 @@ values. Font weight only ever moves in hundreds.
 
 Plain CSS Grid, twelve columns by default. No wrapper row, no negative margins.
 
-| class | CSS |
-| --- | --- |
-| `grid` | `display: grid` with `$columns` equal columns |
-| `cols-1` … `cols-12` | `display: grid` with N equal columns |
-| `col-1` … `col-12` | `grid-column: span N` for a child |
+| class                             | CSS                                           |
+| --------------------------------- | --------------------------------------------- |
+| `grid`                            | `display: grid` with `$columns` equal columns |
+| `cols-1` … `cols-12`              | `display: grid` with N equal columns          |
+| `col-1` … `col-12`                | `grid-column: span N` for a child             |
 | `cols-auto-100` … `cols-auto-400` | `repeat(auto-fit, minmax(Npx, 1fr))`, step 20 |
-| `g-N` | `gap`, 0–160 step 4 |
-| `gcg-N` | `column-gap` |
-| `grg-N` | `row-gap` |
+| `g-N`                             | `gap`, 0–160 step 4                           |
+| `gcg-N`                           | `column-gap`                                  |
+| `grg-N`                           | `row-gap`                                     |
 
 ```jsx
 <div className="cols-3 g-40">
@@ -93,6 +93,40 @@ would drop under the given minimum.
 | `upp`      | `text-transform: uppercase` |                            |
 | `ff-basic` | `font-family: $basic`       |                            |
 | `ff-intro` | `font-family: $intro`       |                            |
+
+## Titles
+
+A heading takes one class from this family and nothing else. Alignment, width and any
+extra spacing belong to the element around it, so retuning a heading never means editing
+markup. Sizes are `rem` against a 16px root, and every class leaves the same 24px below
+itself: a heading and the text under it read as one block, at any size.
+
+| class             | size | weight | line-height | gap  | role                                 |
+| ----------------- | ---- | ------ | ----------- | ---- | ------------------------------------ |
+| `title-intro`     | 64px | 700    | 1.05        | 24px | the hero `h1`, one per site          |
+| `title-intro-sub` | 40px | 600    | 1.2         | 24px | the line that follows the hero `h1`  |
+| `title-page`      | 48px | 500    | 1.1         | 24px | `h1` of an inner page, set by `Page` |
+| `title-section`   | 48px | 600    | 1.2         | 24px | section heading                      |
+| `title`           | 24px | 500    | 1.35        | 24px | section heading inside a text page   |
+| `title-sub`       | 20px | 500    | 1.4         | 24px | subheading inside a text block       |
+| `title-card`      | 18px | 600    | 1.4         | 24px | card or list item heading            |
+| `title-mini`      | 16px | 600    | 1.5         | 24px | label at body size                   |
+
+The two `intro` classes belong to the hero and nowhere else. Further down a page the
+largest heading is `title-section`.
+
+The four large sizes step down twice, so a heading never fills a phone screen:
+
+```
+title-intro        64 → 44 → 36
+title-page         48 → 36 → 32
+title-intro-sub    40 → 32 → 28
+title-section      48 → 40 → 32
+                        sm    xs
+```
+
+No title class sets a font. The face comes from `body`, so changing `$basic` changes every
+heading with it. A second face is applied where it is needed with `ff-intro`.
 
 ## Spacing shortcuts
 
