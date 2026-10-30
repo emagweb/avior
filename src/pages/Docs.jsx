@@ -41,9 +41,8 @@ const Docs = () => {
       <section>
         <h3 className='title'>Container</h3>
         <p>
-          A block is held in width by the container class, and wide releases that limit
-          for full-bleed sections. Padding stays a utility in the markup, so the container
-          does one job only.
+          A block is held in width by the container class, which also keeps a gutter of
+          side padding. Add fluid for a block that runs the full width of the screen.
         </p>
       </section>
       <section>

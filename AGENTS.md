@@ -26,6 +26,9 @@ dictionary. No external grid, no UI library.
   including the responsive steps. Alignment and width go on the element around the
   heading. The list is in [docs/utilities.md](docs/utilities.md); add a variant there
   rather than patching a heading in markup.
+- Responsive behaviour belongs in the Sass, written with the `=v-*` mixins inside the
+  rule it affects. Do not generate breakpoint-prefixed classes such as `sm-fz-20`:
+  they were tried and removed on purpose.
 - `title-intro` and `title-intro-sub` are the hero only. Below the hero the biggest
   heading is `title-section`. Do not reach for an `intro` class to make something stand
   out — the hero is what it marks.

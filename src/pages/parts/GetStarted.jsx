@@ -15,10 +15,10 @@ const steps = [
 
 const GetStarted = () => {
   return (
-    <section id='get-started' className='p-y-104'>
-      <div className='container tc p-x-24'>
+    <section id='get-started' className='p-y-160 bg-light'>
+      <div className='container tc'>
         <h2 className='title-section'>Get Started</h2>
-        <p className='title fw-400 w-60 wide ma'>
+        <p className='title-lead w-60 wide ma'>
           Three steps, and the only file you are expected to edit is the variables one.
         </p>
         <div className='cols-3 g-40 m-t-64 p-b-64 tl'>

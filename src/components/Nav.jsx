@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom'
 
-// A list of links. Away from the home page an anchor points back to it: #features -> /#features
 const Nav = ({ items = [] }) => {
   const { pathname } = useLocation()
   const onHome = pathname === '/'
@@ -10,7 +9,7 @@ const Nav = ({ items = [] }) => {
   if (items.length === 0) return null
 
   return (
-    <nav>
+    <nav className='fw-400'>
       {items.map(({ label, href }) => (
         <a key={href} href={resolve(href)}>{label}</a>
       ))}

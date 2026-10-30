@@ -8,27 +8,24 @@ because something else in the cascade fights them.
 
 ---
 
-## `.container.wide` needs `!important` on `min-width`
+## The full-bleed container is `fluid`, not `wide`
 
 **Where:** `src/styles/inc/_helpers.sass`
 
 ```sass
 .container
-  &.wide
+  &.fluid
     max-width: 100%
-    min-width: 100% !important
+    padding-left: 0
+    padding-right: 0
 ```
 
-**Why:** there is already a `.wide` class in `inc/_helpers.sass`, a mobile helper that
-sets `min-width: 90% !important`. Helpers are imported last, so without `!important`
-here the helper wins below the `sm` breakpoint and a full-bleed container shrinks to 90%.
-With `!important` on both sides the more specific selector decides, and `.container.wide`
-is more specific than `.wide`.
-
-**If removed:** full-bleed sections lose 10% of their width on phones.
-
-**Remove when:** one of the two `.wide` classes is renamed. This is a patch around a
-name collision, not a design choice.
+**Why:** the modifier used to be `wide`, which collided with the `.wide` mobile helper in
+the same file — a helper that sets `min-width: 90% !important`. Helpers load last, so the
+collision had to be patched with `!important` on the container too, and the entry here
+carried a note to rename one of the two. Renaming it `fluid` removed the collision and
+the `!important` with it. `fluid` also zeroes the side padding, so a block can reach both
+edges of the screen.
 
 ---
 
@@ -143,16 +140,17 @@ changing it, or lower the step for the family in question.
 
 ---
 
-## The grid collapses to one column below `sm`
+## Columns go full width below `sm`
 
 **Where:** `src/styles/inc/_grid.sass`
 
 **Why:** the grid replaced `row` and `col-lg-*` from Bootstrap, which stacked on narrow
-screens. Without the collapse, three columns stay three columns on a phone and the
-layout breaks. The breakpoint is `sm`, so tablets keep their columns.
+screens. Without the rule, three columns stay three columns on a phone and the layout
+breaks. The breakpoint is `sm`, and the mechanism is a `flex-basis` of 100% rather than a
+changed column count.
 
-`cols-auto-*` has no breakpoint rule and does not need one: `repeat(auto-fit, minmax())`
-reflows as soon as a column would fall below its minimum.
+`cols-auto-*` has no breakpoint rule and does not need one: its children start from a
+pixel width and wrap on their own as soon as the row runs out.
 
 **If removed:** every multi-column section breaks on phones.
 
@@ -248,3 +246,98 @@ and leaving them out is what keeps the heading free of extra classes. A centred 
 puts `tc` on its container and `tl` back on the grid inside it.
 **The hero lead became a `<p>`.** It was an `h3` holding a sentence of body copy, which
 told search engines it was a heading and forced layout classes onto a heading.
+
+---
+
+## One body size for the whole site, and a cap on line length
+
+**Where:** `src/styles/components/_base.sass`, `src/styles/components/_page.sass`,
+`src/styles/inc/_variables.sass`
+**Why:** The site used to run two body sizes: 16px with a 1.65 line on the landing and
+20px with a doubled line inside `.page`. Same site, two rules, and the inner pages read
+like a different product. Body text is now `$text`, one value in one place, 18px against
+the default root.
+**Line length is left to the container.** Text fills `container`, which is about 115
+characters per line on a 1440px screen. Readability research argues for less — 45 to 75
+characters, with [Baymard](https://baymard.com/blog/line-length-readability) narrowing it
+to 50–60 — and a capped column was tried: paragraphs limited to a `$measure` width, then
+the whole page moved into a 640px reading column. Both were rejected on the look. The
+width of a text block is a design decision, so it belongs to whoever owns the design, and
+a project that wants a reading column adds `maw`-style limits in its own markup.
+**A subtitle may not be smaller than the text it introduces.** The page subtitle rendered
+at 16px above 20px body copy, which read as a stray caption rather than a lead. It is
+`fz-24` now, one step above body.
+**The scale.** 16, 18, 20, 24, 28, 40, 48, 64 — a 1.25 ratio rounded onto the 4px grid.
+`title-section` came down from 48px so that a section heading no longer ties with the page
+`h1`, and the three smaller title classes each moved up one step to stay clear of 18px
+body text.
+
+---
+
+## Responsive rules live in the Sass, not in class names
+**Where:** `src/styles/inc/_responsive.sass`, `src/styles/inc/_variables.sass`
+**Why:** breakpoint-prefixed utilities were built — `sm-fz-20` and friends, generated for
+a whitelist of families — and then removed. A breakpoint is not part of what an element
+is, so it has no business in the element's class list, and a page that tunes three
+properties on two breakpoints ends up carrying six extra class names in the markup.
+Responsive behaviour is written where the rule is, with the `=v-*` mixins:
+```sass
+.title-page
+  font-size: 3rem
+  +v-sm
+    font-size: 2.25rem
+```
+**What it cost to find out.** The generator worked and the numbers were real: the four
+families across three breakpoints ran from 118 KB for font size alone to 211 KB with
+spacing included. The reason for dropping it is not size, it is that the markup should
+not describe breakpoints.
+**One thing stayed.** `$media` now holds the five breakpoint widths in a single map, and
+the `=v-*` mixins read it. Those numbers used to be written twice.
+
+---
+## `cols-*` collapses in two steps, `grid` in one
+**Where:** `src/styles/inc/_grid.sass`
+**Why:** The grid went straight from three columns to one at `sm`, so the whole tablet
+range was either too narrow or too wide. Measured on the landing cards, 18px text:
+```
+1025px   3 columns   276px   31 characters
+1024px   2 columns   434px   48
+ 769px   2 columns   319px   35
+ 768px   1 column    678px   75
+```
+Before the middle step, 769px to 1024px rendered three columns of 23 characters, which is
+a column of fragments rather than a paragraph. Comfortable reading starts around 45.
+**Only `cols-*` gets the step.** `grid` is left alone because a `col-*` share is written
+by hand in the markup: forcing two columns on a tablet would override the share the page
+asked for, and a `col-8` beside a `col-4` would stop being eight and four.
+**`cols-1` and `cols-2` are untouched.** A step from two columns to two is nothing, so the
+rule only applies above two.
+
+---
+## The grid is flexbox, and the gap travels in a custom property
+**Where:** `src/styles/inc/_grid.sass`
+**Why:** CSS Grid is out of this project by decision, so every row of columns is
+flexbox. `grid` is `display: flex` with `flex-wrap: wrap` and children at `flex: 1 1 0`,
+which is the automatic width: three children split the row in three with no class on
+them. `cols-N` sets how many go in a row, `col-N` takes N of `$columns`.
+**The column width has to know the gap.** `gap` is a property of the container, but with
+flexbox the width of a child is its own `flex-basis`, so three children of 33.3% plus two
+gaps overflow the row and the third one wraps. The basis has to subtract its share of the
+gap, and the gap is chosen in the markup by a separate class. So `g-N` and `gcg-N`
+publish the value as `--gap`, and the basis reads it:
+```sass
+flex: 0 1 calc(100% / #{$i} - var(--gap, 0px) * #{math.div($i - 1, $i)})
+```
+The fallback of `0px` means a grid with no gap class still adds up to exactly 100%.
+**The alternative was negative margins,** the way Bootstrap did it before `gap` existed:
+a wrapper row with a negative margin and padding on every column. That needs no custom
+property but brings back the wrapper, makes `g-N` meaningless on a grid, and leaks
+padding into the column background. Rejected.
+**Measured at 1440px,** container inner width 1058px, `g-24`:
+```
+grid, three children        337 + 337 + 337      one row, no overflow
+col-8 + col-4               697 + 336            one row, no overflow
+col-6 + col-3 + col-3       517 + 246 + 246      one row, no overflow
+col-4 four times            336 + 336 + 336      wraps to a second row
+cols-4 with g-16            252 x 4              one row
+```

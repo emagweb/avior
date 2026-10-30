@@ -17,13 +17,15 @@ const Page = ({ title, meta, description, menu, footerMenu, children }) => {
   return (
     <div className="content page">
       <Header {...(menu && { menu })} />
-      <main className='p-y-120'>
-        <div className='container p-x-24'>
+      <div className='bg-grey p-t-96 p-b-72'>
+        <div className='container'>
           {title && <h1 className='title-page'>{title}</h1>}
-          {meta && <p className='p-b-64 p-t-24'>{meta}</p>}
-          <div className="tl p-t-40">
-            {children}
-          </div>
+          {meta && <p className='title-lead'>{meta}</p>}
+        </div>
+      </div>
+      <main className='p-y-96'>
+        <div className='container tl'>
+          {children}
         </div>
       </main>
       <Footer {...(footerMenu && { menu: footerMenu })} />

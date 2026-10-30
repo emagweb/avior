@@ -78,16 +78,16 @@ the value belongs in variables instead.
 `inc/_responsive.sass` holds five mixins, `=v-xl` down to `=v-xs`, all max-width based,
 so the system is desktop-first.
 
-Responsive variants are written as a prefix: `md-cols-2`, `sm-hide`. They are generated
-only for a whitelist — grid, flex, gap, display, `maw`, show/hide. Do not extend prefixes
-to the numeric utilities: five breakpoints across the full generated set would produce
-tens of thousands of rules.
+Responsive behaviour is written in the Sass with the `=v-*` mixins, inside the rule it
+affects. Breakpoint-prefixed classes were built and then removed: a class name is not the
+place for a breakpoint, and generating the numeric families across five breakpoints runs
+into tens of thousands of rules.
 
 ## What is deliberately missing
 
-No external grid and no CSS framework. The grid is plain CSS Grid in `inc/_grid.sass`:
-`grid`, `cols-N`, `col-1..12`, `cols-auto-N`. Grid is the right model for rows and
-columns — no wrapper row, no negative margins, native gap. Bootstrap was used as a
+No external grid and no CSS framework. The grid is flexbox in `inc/_grid.sass`:
+`grid`, `cols-N`, `col-1..12`, `cols-auto-N`. No wrapper row, no negative margins, and
+native `gap` instead of both. Bootstrap was used as a
 crutch early on and has been removed; `inc/_reset.sass` replaces the parts of its reboot
 the layout relied on.
 
@@ -114,11 +114,10 @@ Write those in a component file under `components/`. Anything interactive will n
 
 1. Full flexbox dictionary: `ac-*`, `as-*`, `fxd-*`, `fxw-*`, `fxf-*`, `ord-*`
 2. `maw` / `miw` / `mah` / `mih`
-3. Breakpoint prefixes for a whitelist of classes
-4. Forms and card
-5. Utilities for `position`, `z-index`, shadows and transitions
-6. Build-time check for class names used in markup but missing from the CSS
+3. Forms and card
+4. Utilities for `position`, `z-index`, shadows and transitions
+5. Build-time check for class names used in markup but missing from the CSS
 
-Done: `!default` and configurable generation limits, the CSS Grid implementation, button
+Done: `!default` and configurable generation limits, the flexbox grid, button
 variants with outline and sizes, the move from `@import` to `@use`/`@forward`, and
 dropping Bootstrap.

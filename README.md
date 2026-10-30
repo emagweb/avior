@@ -100,13 +100,13 @@ Use them in components so a project can be recoloured without touching markup.
 ## Container
 
 ```jsx
-<div className="container p-x-24">…</div>
-<div className="container wide">…</div>
+<div className="container">…</div>
+<div className="container fluid">…</div>
 ```
 
-`container` holds the width and centres the block, nothing else — padding is a utility in
-the markup. `wide` releases the width limit for full-bleed sections. The maximum width is
-the `$content` variable.
+`container` holds the width, centres the block and keeps `$gutter` of side padding, so
+text never touches the edge of a phone. `fluid` takes the full width of the screen and
+drops that padding to zero. The maximum width is `$content`.
 
 ## Structure and load order
 
@@ -120,7 +120,7 @@ src/styles/
   inc/
     _variables.sass        the file you edit: theme and generation limits
     _responsive.sass       mixins =v-xl =v-lg =v-md =v-sm =v-xs
-    _grid.sass             grid, cols-*, col-*, gaps
+    _grid.sass             flexbox grid, cols-*, col-*, gaps
     _helpers.sass          generated utilities, loaded last
   components/
     _colors.sass           .c-* .bg-* .bc-*
@@ -143,6 +143,20 @@ library. Configure the first line of `custom.sass`:
 ```
 
 Colours, fonts, `$content`, `$radius`, and the generation limits are all configurable.
+
+Typography has its own five:
+
+| variable   | default    | what it controls                                      |
+| ---------- | ---------- | ----------------------------------------------------- |
+| `$root`    | `100%`     | the root size every `rem` is measured against         |
+| `$text`    | `1.125rem` | body text, 18px with the default root                 |
+| `$weight`  | `400`      | weight of body text                                   |
+| `$line`    | `1.6`      | line height of body text                              |
+| `$gutter`  | `5%`       | side padding of every container                       |
+
+Breakpoints live in one map, `$media`, which the `=v-*` mixins read. Responsive rules are
+written with those mixins in the Sass; there are no breakpoint-prefixed classes.
+
 The limits decide how large the stylesheet is:
 
 | variable                         | default | what it controls                         |
@@ -269,8 +283,8 @@ Contact page.
   component file under `components/`.
 - The flexbox set is partial: alignment and wrapping are there, but `ac-*`, `as-*`,
   `fxd-*`, `fxw-*` and `ord-*` are still missing.
-- Breakpoint prefixes such as `md-cols-2` are not generated yet. Responsive behaviour is
-  either baked into a class (`m-hide`, `tr`, `s-N`) or written in a component file.
+- Responsive behaviour is written in the Sass with the `=v-*` mixins, or baked into a
+  class such as `m-hide`, `tr` or `s-N`. There are no breakpoint prefixes by design.
 - Headings are a fixed `rem` scale. Below the `xs` breakpoint only `h1` and `h2` shrink.
 
 ## Contributing

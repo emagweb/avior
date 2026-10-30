@@ -13,7 +13,7 @@ const features = [
   },
   {
     title: "Nothing else in the box",
-    desc: "React, Rsbuild and Sass. No external grid, no UI library, no runtime. The grid is plain CSS Grid with twelve columns.",
+    desc: "React, Rsbuild and Sass. No external grid, no UI library, no runtime. Twelve columns on flexbox, and a gap that is one class.",
   },
   {
     title: "Readable markup",
@@ -27,8 +27,8 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="p-y-104">
-      <div className="container tc p-x-24">
+    <section id="features" className="p-y-160">
+      <div className="container tc">
         <h2 className="title-section">What you get</h2>
         <div className="cols-3 g-40 m-t-64 tl">
           {features.map(({ title, desc }) => (

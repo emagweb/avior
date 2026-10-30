@@ -2,33 +2,53 @@
 @use "sass:math"
 
 .grid
-  display: grid
-  grid-template-columns: repeat($columns, 1fr)
+  display: flex
+  flex-wrap: wrap
+  > *
+    flex: 1 1 0
+    min-width: 0
   +v-sm
-    grid-template-columns: 1fr
+    > *
+      flex-basis: 100%
 
 @for $i from 1 through $columns
   .cols-#{$i}
-    display: grid
-    grid-template-columns: repeat($i, 1fr)
+    display: flex
+    flex-wrap: wrap
+    > *
+      flex: 0 1 calc(100% / #{$i} - var(--gap, 0px) * #{math.div($i - 1, $i)})
+      min-width: 0
+    @if $i > 2
+      +v-md
+        > *
+          flex-basis: calc(50% - var(--gap, 0px) * 0.5)
     +v-sm
-      grid-template-columns: 1fr
+      > *
+        flex-basis: 100%
+
+@for $i from 1 through $columns
   .col-#{$i}
-    grid-column: span $i
+    flex: 0 1 calc(#{math.percentage(math.div($i, $columns))} - var(--gap, 0px) * #{math.div($columns - $i, $columns)})
+    min-width: 0
     +v-sm
-      grid-column: span 1
+      flex-basis: 100%
 
 @for $n from math.div($min-auto, $step-auto) through math.div($max-auto, $step-auto)
   $i: $n * $step-auto
   .cols-auto-#{$i}
-    display: grid
-    grid-template-columns: repeat(auto-fit, minmax($i * 1px, 1fr))
+    display: flex
+    flex-wrap: wrap
+    > *
+      flex: 1 1 #{$i}px
+      min-width: 0
 
 @for $n from 0 through math.div($max-space, $step)
   $i: $n * $step
   .g-#{$i}
+    --gap: #{$i}px
     gap: $i * 1px
   .gcg-#{$i}
+    --gap: #{$i}px
     column-gap: $i * 1px
   .grg-#{$i}
     row-gap: $i * 1px

@@ -4,6 +4,7 @@ import { useMeta } from '../hooks/useMeta'
 import { Hero } from './parts/Hero'
 import { Features } from './parts/Features'
 import { GetStarted } from './parts/GetStarted'
+import { Cta } from './parts/Cta'
 
 const Home = () => {
   useMeta(null, 'Avior is a starter stack for websites: React, Rsbuild and Sass utilities named after the Emmet dictionary. Values from the design go straight into the class name.')
@@ -11,10 +12,11 @@ const Home = () => {
   return (
     <div className="content">
       <Header />
-      <main className='p-y-120'>
+      <main>
         <Hero />
         <Features />
         <GetStarted />
+        <Cta />
       </main>
       <Footer />
     </div>

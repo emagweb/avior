@@ -32,17 +32,21 @@ values. Font weight only ever moves in hundreds.
 
 ## Grid
 
-Plain CSS Grid, twelve columns by default. No wrapper row, no negative margins.
+Flexbox, twelve columns by default. No wrapper row, no negative margins, native `gap`.
 
-| class                             | CSS                                           |
-| --------------------------------- | --------------------------------------------- |
-| `grid`                            | `display: grid` with `$columns` equal columns |
-| `cols-1` … `cols-12`              | `display: grid` with N equal columns          |
-| `col-1` … `col-12`                | `grid-column: span N` for a child             |
-| `cols-auto-100` … `cols-auto-400` | `repeat(auto-fit, minmax(Npx, 1fr))`, step 20 |
-| `g-N`                             | `gap`, 0–160 step 4                           |
-| `gcg-N`                           | `column-gap`                                  |
-| `grg-N`                           | `row-gap`                                     |
+| class                             | CSS                                              |
+| --------------------------------- | ------------------------------------------------ |
+| `grid`                            | `display: flex` + wrap, children share the row   |
+| `cols-1` … `cols-12`              | `display: flex` + wrap, N equal columns per row  |
+| `col-1` … `col-12`                | a child takes N of `$columns`                    |
+| `cols-auto-100` … `cols-auto-400` | children start at Npx and wrap, step 20          |
+| `g-N`                             | `gap`, 0–160 step 4, also publishes `--gap`      |
+| `gcg-N`                           | `column-gap`, also publishes `--gap`             |
+| `grg-N`                           | `row-gap`                                        |
+
+Children of `grid` take `flex: 1 1 0`, so three of them split the row in three with no
+class at all. `col-N` replaces that with a share of twelve, and the shares wrap: four
+`col-4` land as three plus one.
 
 ```jsx
 <div className="cols-3 g-40">
@@ -55,16 +59,29 @@ Plain CSS Grid, twelve columns by default. No wrapper row, no negative margins.
 </div>
 ```
 
-Below the `sm` breakpoint `grid`, `cols-*` and `col-*` collapse to a single column.
-`cols-auto-*` needs no breakpoint at all: it reflows on its own as soon as a column
-would drop under the given minimum.
+`cols-*` collapses in two steps. Anything wider than two columns drops to two below the
+`md` breakpoint, and everything drops to one below `sm`. Without the middle step three
+columns on a tablet leave about 23 characters per line, which reads as a column of
+fragments.
+
+```
+cols-3     1440px   3 columns   36 characters
+           1024px   2 columns   48
+            768px   1 column    75
+            390px   1 column    37
+```
+
+`grid` and `col-*` keep the single step to full width below `sm`: a share of twelve is
+chosen by hand in the markup, and halving it for a tablet would fight that choice.
+`cols-auto-*` needs no breakpoint at all: it reflows on its own as soon as a column would
+drop under the given minimum.
 
 ## Layout
 
 | class            | CSS                                          |
 | ---------------- | -------------------------------------------- |
-| `container`      | `max-width: $content`, centred, zero padding |
-| `container wide` | releases the width limit, full bleed         |
+| `container`      | `max-width: $content`, centred, `$gutter` of side padding |
+| `container fluid` | full width of the screen, no side padding                |
 | `flex`           | `display: flex`                              |
 | `rowrap`         | `flex-flow: row wrap`                        |
 | `oh`             | `overflow: hidden`                           |
@@ -106,10 +123,11 @@ itself: a heading and the text under it read as one block, at any size.
 | `title-intro`     | 64px | 700    | 1.05        | 24px | the hero `h1`, one per site          |
 | `title-intro-sub` | 40px | 600    | 1.2         | 24px | the line that follows the hero `h1`  |
 | `title-page`      | 48px | 500    | 1.1         | 24px | `h1` of an inner page, set by `Page` |
-| `title-section`   | 48px | 600    | 1.2         | 24px | section heading                      |
-| `title`           | 24px | 500    | 1.35        | 24px | section heading inside a text page   |
-| `title-sub`       | 20px | 500    | 1.4         | 24px | subheading inside a text block       |
-| `title-card`      | 18px | 600    | 1.4         | 24px | card or list item heading            |
+| `title-section`   | 40px | 600    | 1.2         | 24px | section heading                      |
+| `title`           | 28px | 600    | 1.3         | 24px | section heading inside a text page   |
+| `title-lead`      | 24px | 400    | 1.5         | 24px | lead paragraph, 20px below `sm`      |
+| `title-sub`       | 24px | 500    | 1.35        | 24px | subheading inside a text block       |
+| `title-card`      | 20px | 600    | 1.4         | 24px | card or list item heading            |
 | `title-mini`      | 16px | 600    | 1.5         | 24px | label at body size                   |
 
 The two `intro` classes belong to the hero and nowhere else. Further down a page the
@@ -121,7 +139,7 @@ The four large sizes step down twice, so a heading never fills a phone screen:
 title-intro        64 → 44 → 36
 title-page         48 → 36 → 32
 title-intro-sub    40 → 32 → 28
-title-section      48 → 40 → 32
+title-section      40 → 32 → 28
                         sm    xs
 ```
 

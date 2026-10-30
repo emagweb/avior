@@ -2,14 +2,10 @@ import logo from '../assets/svg/logo.svg'
 import { Nav } from './Nav'
 import { legal } from '../data/menu'
 
-//   <Footer />                 the legal menu
-//   <Footer menu={main} />     any other menu
-//   <Footer menu={[]} />       the copyright line only
-//   <Footer brand='Avior' />   text next to the logo
 const Footer = ({ menu = legal, brand = 'Avior', copy = '\u00A92026 - Avior.' }) => {
   return (
-    <footer className='p-b-96'>
-      <div className='container p-x-24 flex aic jcsb fw-300'>
+    <footer className='h-20 flex aic'>
+      <div className='container flex aic jcsb'>
         <figure className='logo'>
           <a href='/'>
             <img src={logo} alt='Avior' />
