@@ -1,38 +1,50 @@
+import { PiKeyboard, PiRuler, PiSliders, PiPackage, PiCode, PiRobot } from 'react-icons/pi'
+
 const features = [
   {
+    Icon: PiKeyboard,
     title: "Names you already know",
-    desc: "align-items: center is aic, gap is g-24, max-width is maw. The abbreviations come from the Emmet dictionary, so there is no second vocabulary to learn.",
+    desc: "align-items: center is aic, gap is g-24, max-width is maw. Emmet abbreviations, not a dictionary invented for a framework.",
   },
   {
+    Icon: PiRuler,
     title: "Values from the design",
-    desc: "You see 104px in the mockup, you write p-t-104. No scale to translate, no token to invent, and nothing blocking you when a value is not in the scale.",
+    desc: "The mockup says 104px, you write p-t-104. No scale to translate and nothing to configure when a value is not in it.",
   },
   {
+    Icon: PiSliders,
     title: "One file to configure",
-    desc: "Colours, fonts, container width and corner radius live in one variables file. Every class and component follows from it.",
+    desc: "Colours, fonts, container, radius, steps. Every class and component follows from it.",
   },
   {
+    Icon: PiPackage,
     title: "Nothing else in the box",
-    desc: "React, Rsbuild and Sass. No external grid, no UI library, no runtime. Twelve columns on flexbox, and a gap that is one class.",
+    desc: "React, Rsbuild, Sass. No external grid, no UI library, no runtime. Twelve columns on flexbox and a gap that is one class.",
   },
   {
-    title: "Readable markup",
-    desc: "Six utilities fit in 47 characters where a long-form framework needs 150. Short enough to read the layout straight from the className.",
+    Icon: PiCode,
+    title: "Markup you can read",
+    desc: "Six utilities in 47 characters where a long-form framework needs 150. You read the layout instead of scrolling past it.",
   },
   {
-    title: "Made for agents too",
-    desc: "Rules live in AGENTS.md, the class reference in docs, and every non-obvious declaration is explained in a decisions log. An agent can extend the system without breaking it.",
+    Icon: PiRobot,
+    title: "Agents handle it too",
+    desc: "The rules live in AGENTS.md, the classes in docs, and every non-obvious line in a decisions log. An agent extends it without guessing.",
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="p-y-160">
-      <div className="container tc">
-        <h2 className="title-section">What you get</h2>
-        <div className="cols-3 g-40 m-t-64 tl">
-          {features.map(({ title, desc }) => (
-            <div key={title}>
+    <section id="features" className="p-y-80">
+      <div className="container">
+        <div className='w-60 wide'>
+          <span className='eyebrow'>In the box</span>
+          <h2 className="title-section">Six things, nothing else</h2>
+        </div>
+        <div className="cols-3 g-24 m-t-64">
+          {features.map(({ Icon, title, desc }) => (
+            <div key={title} className='card'>
+              <Icon className='icon' aria-hidden='true' />
               <h3 className="title-card">{title}</h3>
               <p>{desc}</p>
             </div>

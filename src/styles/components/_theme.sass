@@ -1,0 +1,60 @@
+@use "../core" as *
+@use "sass:color"
+
+html.dark
+  color-scheme: dark
+  body
+    color: $night-text
+    background-color: $night
+  .bg-white,
+  .bg-theme
+    background-color: $night !important
+  .bg-light,
+  .bg-grey
+    background-color: $night-surface !important
+  .c-dark
+    color: $night-text !important
+  .c-medium
+    color: $night-muted !important
+  .eyebrow,
+  .numeral,
+  .versus .label,
+  .versus.muted .count,
+  .versus.muted code,
+  .swatch-hex,
+  .rows th
+    color: $night-muted
+  .bc-dark
+    border-color: $night-line !important
+  .icon
+    color: color.scale($icon, $lightness: 18%)
+  .button .icon
+    color: currentColor
+  code
+    color: $night-text
+    border-color: $night-line
+    background-color: $night-surface
+  .frame
+    border-color: $night-line
+    background-color: $night
+  pre.frame code
+    background-color: transparent
+  .button
+    &:focus-visible
+      outline-color: $night-text
+    &.outline
+      color: $night-text
+  .button.dark
+    border-color: $night-text
+    color: $night
+    background-color: $night-text
+    &:hover
+      border-color: $white
+      background-color: $white
+    &.outline
+      color: $night-text
+      border-color: $night-text
+      background-color: transparent
+      &:hover
+        color: $night
+        background-color: $night-text

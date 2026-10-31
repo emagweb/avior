@@ -95,7 +95,7 @@
   $i: $n * $step-line
   .lh-#{$i}
     display: inline-block
-    line-height: $i * .001 !important
+    line-height: $i * .01 !important
 
 @for $i from 0 through $max-border
   .bw-#{$i}
@@ -190,7 +190,3 @@
       text-align: center !important
       margin-left: auto !important
       margin-right: auto !important
-
-#hero.p-y-104
-  +v-sm
-    padding: 64px 0

@@ -341,3 +341,37 @@ col-6 + col-3 + col-3       517 + 246 + 246      one row, no overflow
 col-4 four times            336 + 336 + 336      wraps to a second row
 cols-4 with g-16            252 x 4              one row
 ```
+
+---
+## The dark theme is a class on `html`, not a second palette
+**Where:** `src/styles/components/_theme.sass`, `src/components/Theme.jsx`
+**Why:** the utilities compile to static hex values — `.bg-light` is a colour, not a
+token — so a runtime theme cannot come from the palette alone. The theme is a `dark`
+class on `html`, and one file lists what changes under it: the page background and text,
+the two tinted section backgrounds, borders, `code`, `.frame` and the dark button
+variant. Four variables hold its colours: `$night`, `$night-surface`, `$night-line`,
+`$night-text`.
+**Why not CSS custom properties for every colour.** It would make the whole palette
+swappable at runtime, and it would also mean every generated class reads a variable,
+which is a different library than the one this is. The utilities stay literal; the theme
+is a short, readable override.
+**The switch remembers, and asks the system first.** `Theme.jsx` keeps the choice in
+`localStorage` under `avior-theme` and falls back to `prefers-color-scheme`. An inline
+script in `public/index.html` applies the class before the first paint, otherwise a dark
+reader gets a white flash on every load.
+**What to check when adding a section.** A background put on a section with `bg-*` needs
+a line in `_theme.sass` unless it is already covered by the `.bg-light` and `.bg-grey`
+rules.
+
+---
+## The mobile menu is a panel under the header
+**Where:** `src/components/Header.jsx`, `src/styles/components/_menu.sass`
+**Why:** below `sm` the links used to simply stack under the logo, which pushed the hero
+down and left no way to close them. The header is now `position: relative` with an
+absolutely positioned panel: `opacity`, `transform` and `visibility` transition together,
+so the panel animates and stops receiving clicks when closed.
+**It closes three ways:** a link (`Nav` takes an `onNavigate` callback), a pointer down
+outside the header bar, and Escape. The listeners are added only while the panel is open
+and removed when it closes.
+**`visibility` is in the transition on purpose.** Without it the panel would still catch
+clicks at zero opacity.

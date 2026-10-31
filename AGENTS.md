@@ -12,7 +12,9 @@ dictionary. No external grid, no UI library.
 ## Rules
 
 - Keep the import order in `src/styles/custom.sass`. `inc/_helpers.sass` comes last.
-- Derive class names from the Emmet dictionary. Do not invent new abbreviations.
+- Class names are short, readable abbreviations of the property and value
+  (aic = align-items: center). Follow the existing pattern; do not add a new
+  class name without asking.
 - Do not add a CSS framework, a grid library or a component library.
 - Keep the `inc/` + `components/` structure. Theme changes belong in
   `inc/_variables.sass`, everything else is the engine.
@@ -41,6 +43,12 @@ dictionary. No external grid, no UI library.
   rather than deciding for them. Outline buttons are not part of this: their label keeps
   the button colour on purpose, because a light outline button is meant for a dark
   background. Do not "fix" it.
+- The dark theme is a `dark` class on `html`, set by `components/Theme.jsx` and applied
+  early by the inline script in `public/index.html`. Its colours are the `$night*`
+  variables and everything it overrides lives in `components/_theme.sass`. When a section
+  gets a background, check it in both themes.
+- The header menu becomes a panel below `sm`. It closes on a link, on an outside click and
+  on Escape — keep those three if you touch `components/Header.jsx`.
 - Write code, comments, copy and commit messages in English.
 - Keep the Sass files free of comments. Usage goes to `README.md`, the class reference to
   `docs/utilities.md`, reasoning to `docs/decisions.md`.

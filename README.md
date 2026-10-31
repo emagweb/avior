@@ -128,6 +128,11 @@ src/styles/
     _buttons.sass
     _titles.sass           the .title family, the only way to style a heading
     _logo.sass             .logo in the header and its footer variant
+    _menu.sass             the burger and the mobile panel
+    _toggle.sass           the theme switch
+    _theme.sass            everything the dark theme overrides
+    _code.sass             code, pre and .frame
+    _docs.sass             the table, search box and demo block of the Docs page
     _header.sass
     _footer.sass
     _page.sass
@@ -153,6 +158,10 @@ Typography has its own five:
 | `$weight`  | `400`      | weight of body text                                   |
 | `$line`    | `1.6`      | line height of body text                              |
 | `$gutter`  | `5%`       | side padding of every container                       |
+| `$mono`    | system     | font of `code` and `pre`                              |
+
+The dark theme has four of its own: `$night` for the page, `$night-surface` for a tinted
+section, `$night-line` for borders and `$night-text` for type.
 
 Breakpoints live in one map, `$media`, which the `=v-*` mixins read. Responsive rules are
 written with those mixins in the Sass; there are no breakpoint-prefixed classes.

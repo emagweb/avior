@@ -34,6 +34,17 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/logo512.png" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
+    <script>
+      // Applies the saved theme before the first paint, so a dark reader never
+      // gets a flash of the light one. The switch itself lives in Theme.jsx.
+      (function () {
+        try {
+          var saved = localStorage.getItem('avior-theme');
+          var dark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
