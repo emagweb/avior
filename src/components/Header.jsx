@@ -4,15 +4,10 @@ import { Nav } from './Nav'
 import { Theme } from './Theme'
 import { main } from '../data/menu'
 
-//   <Header />                 the main menu
-//   <Header menu={legal} />    any other menu
-//   <Header menu={[]} />       logo only
-//   <Header brand='Avior' />   text next to the logo
 const Header = ({ menu = main, brand = 'Avior' }) => {
   const [open, setOpen] = useState(false)
   const bar = useRef(null)
 
-  // Below sm the menu is a panel, so it closes on an outside click and on Escape.
   useEffect(() => {
     if (!open) return
 
@@ -32,11 +27,11 @@ const Header = ({ menu = main, brand = 'Avior' }) => {
   }, [open])
 
   return (
-    <header className='p-y-24' id='top'>
+    <header id='top'>
       <div className='container' ref={bar}>
         <figure className='logo'>
           <a href='/'>
-            <img src={logo} alt='Avior' />
+            <img src={logo} alt='' />
             <span>{brand}</span>
           </a>
         </figure>

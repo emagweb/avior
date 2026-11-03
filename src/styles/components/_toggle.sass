@@ -8,12 +8,12 @@
   height: 40px
   padding: 0
   color: $medium
-  font-size: 1.25rem
+  font-size: 1.125rem
   border: 1px solid $border
-  border-radius: $radius
+  border-radius: 50%
   background-color: transparent
   cursor: pointer
-  transition: all ease .25s
+  transition: color ease .2s, border-color ease .2s
   &:hover
     color: $dark
     border-color: $medium
@@ -25,4 +25,4 @@ html.dark .toggle
   border-color: $night-line
   &:hover
     color: $night-text
-    border-color: $medium
+    border-color: $night-muted

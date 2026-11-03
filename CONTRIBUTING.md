@@ -14,18 +14,16 @@ align-items: center             ->  aic
 justify-content: space-between  ->  jcsb
 ```
 
-The abbreviations are not ours. They are Emmet's, so anyone who types `ai:c` in an editor
-already knows the class name without reading documentation. The dictionary ships with
-Emmet itself; in VS Code it lives at
-`Contents/Resources/app/extensions/emmet/dist/node/emmetNodeMain.js`. Check it before
-adding a name — `g` is `gap`, `maw` is `max-width`, `gtc` is `grid-template-columns`,
-and `fz`, not `fs`, is `font-size`.
+A name is good when someone who knows the CSS can guess it, and someone who reads it can
+tell what it does without the docs. Before adding one, check that it follows the same
+pattern as its neighbours and does not collide with an existing class. Layout keeps the
+names every grid system uses: `container`, `row`, `col-N`.
 
 Numeric values are never mapped to a scale. The design says 104px, the markup says
 `p-t-104`. That is the whole point: no step to invent, no token to look up, nothing to
 block you when a value is not in the scale.
 
-Some older names break the rule and stay as aliases: `flex`, `oh`, `tc`, `tl`, `tr`,
+Some names are shorter than the rule because they are used everywhere: `flex`, `oh`, `tc`, `tl`, `tr`,
 `upp`, `rowrap`, `obfc`. They are not renamed because they are already written in real
 projects. New names follow the rule strictly.
 
@@ -64,7 +62,8 @@ the value belongs in variables instead.
 
 ## Adding a utility family
 
-1. Find the Emmet abbreviation for the property. Do not shorten it yourself.
+1. Name it with the rule: first letters of the property, then of the value. Check that the
+   name is not taken and reads the same way as its neighbours.
 2. Add the loop to `inc/_helpers.sass` next to the related families.
 3. Decide the unit and encode it in the family, not in the value: the bare family is
    percent or vh, `-p-` is pixels. `w-60` is 60%, `w-p-480` is 480px.
@@ -86,8 +85,7 @@ into tens of thousands of rules.
 ## What is deliberately missing
 
 No external grid and no CSS framework. The grid is flexbox in `inc/_grid.sass`:
-`grid`, `cols-N`, `col-1..12`, `cols-auto-N`. No wrapper row, no negative margins, and
-native `gap` instead of both. Bootstrap was used as a
+`row`, `col`, `col-1..12`, `col-auto`. No negative margins, and native `gap` instead. Bootstrap was used as a
 crutch early on and has been removed; `inc/_reset.sass` replaces the parts of its reboot
 the layout relied on.
 
@@ -108,7 +106,7 @@ Write those in a component file under `components/`. Anything interactive will n
 - Run `yarn build` and make sure it passes.
 - If the change touches generated utilities, mention the effect on the compiled CSS size
   in the pull request.
-- If the change adds a class name, state which Emmet abbreviation it comes from.
+- If the change adds a class name, show the declaration it stands for.
 
 ## Roadmap
 

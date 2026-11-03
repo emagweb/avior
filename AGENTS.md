@@ -1,7 +1,8 @@
 # AGENTS.md
 
-Avior is a starter stack: React, Rsbuild and Sass utilities named after the Emmet
-dictionary. No external grid, no UI library.
+Avior is a React starter with its own Sass utilities: short class names that read as the
+CSS they stand for, values taken from the design, and a container / row / col grid.
+No external grid, no UI library.
 
 ## Commands
 
@@ -16,6 +17,9 @@ dictionary. No external grid, no UI library.
   (aic = align-items: center). Follow the existing pattern; do not add a new
   class name without asking.
 - Do not add a CSS framework, a grid library or a component library.
+- Lay out with `container`, `row` and `col` / `col-1` … `col-12` / `col-auto`, with the gap
+  as `flex-N` (or `flex-X-Y` for column and row gaps) on the row: `row flex-24`.
+  Do not invent other grid or gap classes.
 - Keep the `inc/` + `components/` structure. Theme changes belong in
   `inc/_variables.sass`, everything else is the engine.
 - Build pages with the `Page` template. Menus are data in `src/data/menu.js`.
@@ -50,6 +54,9 @@ dictionary. No external grid, no UI library.
 - The header menu becomes a panel below `sm`. It closes on a link, on an outside click and
   on Escape — keep those three if you touch `components/Header.jsx`.
 - Write code, comments, copy and commit messages in English.
+- Do not write comments in code: not in Sass, JSX, JS or HTML. Class and variable names
+  should make the code readable on its own; if they do not, rename them. The only
+  exception is commented-out code that the README tells the user to switch on.
 - Keep the Sass files free of comments. Usage goes to `README.md`, the class reference to
   `docs/utilities.md`, reasoning to `docs/decisions.md`.
 - Before deleting a declaration that looks redundant, check `docs/decisions.md`.

@@ -144,13 +144,10 @@ changing it, or lower the step for the family in question.
 
 **Where:** `src/styles/inc/_grid.sass`
 
-**Why:** the grid replaced `row` and `col-lg-*` from Bootstrap, which stacked on narrow
+**Why:** the grid keeps `row` and `col-*` from Bootstrap, which stacked on narrow
 screens. Without the rule, three columns stay three columns on a phone and the layout
 breaks. The breakpoint is `sm`, and the mechanism is a `flex-basis` of 100% rather than a
 changed column count.
-
-`cols-auto-*` has no breakpoint rule and does not need one: its children start from a
-pixel width and wrap on their own as soon as the row runs out.
 
 **If removed:** every multi-column section breaks on phones.
 
@@ -251,7 +248,7 @@ told search engines it was a heading and forced layout classes onto a heading.
 
 ## One body size for the whole site, and a cap on line length
 
-**Where:** `src/styles/components/_base.sass`, `src/styles/components/_page.sass`,
+**Where:** `src/styles/components/_base.sass`,
 `src/styles/inc/_variables.sass`
 **Why:** The site used to run two body sizes: 16px with a 1.65 line on the landing and
 20px with a doubled line inside `.page`. Same site, two rules, and the inner pages read
@@ -295,51 +292,45 @@ not describe breakpoints.
 the `=v-*` mixins read it. Those numbers used to be written twice.
 
 ---
-## `cols-*` collapses in two steps, `grid` in one
+## The grid is `container`, `row` and `col`
+
 **Where:** `src/styles/inc/_grid.sass`
-**Why:** The grid went straight from three columns to one at `sm`, so the whole tablet
-range was either too narrow or too wide. Measured on the landing cards, 18px text:
-```
-1025px   3 columns   276px   31 characters
-1024px   2 columns   434px   48
- 769px   2 columns   319px   35
- 768px   1 column    678px   75
-```
-Before the middle step, 769px to 1024px rendered three columns of 23 characters, which is
-a column of fragments rather than a paragraph. Comfortable reading starts around 45.
-**Only `cols-*` gets the step.** `grid` is left alone because a `col-*` share is written
-by hand in the markup: forcing two columns on a tablet would override the share the page
-asked for, and a `col-8` beside a `col-4` would stop being eight and four.
-**`cols-1` and `cols-2` are untouched.** A step from two columns to two is nothing, so the
-rule only applies above two.
+
+**Why:** the earlier version had `grid`, `cols-N` and `cols-auto-N`. They worked, but they
+were names nobody knew before opening this project. `container`, `row` and `col-N` are what
+anyone who has used Bootstrap or another twelve-column grid already expects, so they win
+on the one thing this project optimises for: reading the markup without a reference.
+
+**What was dropped with them:** the tablet step of `cols-*` (three columns to two below
+`md`). A `col-N` share is written by hand, and halving it on a tablet would fight that
+choice. A section that needs a different split on a tablet sets it in its Sass.
 
 ---
+
 ## The grid is flexbox, and the gap travels in a custom property
 **Where:** `src/styles/inc/_grid.sass`
 **Why:** CSS Grid is out of this project by decision, so every row of columns is
-flexbox. `grid` is `display: flex` with `flex-wrap: wrap` and children at `flex: 1 1 0`,
+flexbox. `row` is `display: flex` with `flex-wrap: wrap`, and `col` is `flex: 1 1 0`,
 which is the automatic width: three children split the row in three with no class on
-them. `cols-N` sets how many go in a row, `col-N` takes N of `$columns`.
+it. `col-N` takes N of `$columns`.
 **The column width has to know the gap.** `gap` is a property of the container, but with
 flexbox the width of a child is its own `flex-basis`, so three children of 33.3% plus two
 gaps overflow the row and the third one wraps. The basis has to subtract its share of the
-gap, and the gap is chosen in the markup by a separate class. So `g-N` and `gcg-N`
-publish the value as `--gap`, and the basis reads it:
+gap, and the gap is chosen in the markup by a separate class. So `flex-N` and `flex-X-Y`
+hand the value to their children as `--gap`, and the basis reads it:
 ```sass
-flex: 0 1 calc(100% / #{$i} - var(--gap, 0px) * #{math.div($i - 1, $i)})
+flex: 0 0 calc(#{math.percentage(math.div($i, $columns))} - var(--gap, 0px) * #{math.div($columns - $i, $columns)})
 ```
 The fallback of `0px` means a grid with no gap class still adds up to exactly 100%.
 **The alternative was negative margins,** the way Bootstrap did it before `gap` existed:
-a wrapper row with a negative margin and padding on every column. That needs no custom
-property but brings back the wrapper, makes `g-N` meaningless on a grid, and leaks
-padding into the column background. Rejected.
-**Measured at 1440px,** container inner width 1058px, `g-24`:
+a negative margin on the row and padding on every column. That needs no custom property,
+but it makes the gap class meaningless on a row and leaks padding into the column background. Rejected.
+**Measured at 1440px,** container inner width 1058px, `flex-24`:
 ```
-grid, three children        337 + 337 + 337      one row, no overflow
+col, three children         337 + 337 + 337      one row, no overflow
 col-8 + col-4               697 + 336            one row, no overflow
 col-6 + col-3 + col-3       517 + 246 + 246      one row, no overflow
 col-4 four times            336 + 336 + 336      wraps to a second row
-cols-4 with g-16            252 x 4              one row
 ```
 
 ---
@@ -375,3 +366,22 @@ outside the header bar, and Escape. The listeners are added only while the panel
 and removed when it closes.
 **`visibility` is in the transition on purpose.** Without it the panel would still catch
 clicks at zero opacity.
+
+---
+
+## The gap is written on `flex`, and handed to the children
+
+**Where:** `src/styles/inc/_grid.sass`
+
+**Why:** `g-N`, `gcg-N` and `grg-N` were three extra families for one idea. A gap only
+means something on a flex container, so it now lives on the word itself: `flex-24`, and
+`flex-24-32` for 24px between columns and 32px between rows.
+
+**Why `--gap` goes to `> *` and not to the element.** With `--gap` on the container, a
+column that was itself a flex container with a gap (`col-4 flex-16`) read its own value
+instead of the row's, and the row broke into fewer columns. Set on the children, the value
+a column reads always comes from the row it sits in. `.row > *` resets it to zero, so a
+nested row without a gap does not inherit the outer one.
+
+**Two-value pairs stop at `$max-gap`** (64 by default). Every pair is a class, and the
+full 0–160 range would be 1681 of them; 0–64 is 289.

@@ -6,7 +6,7 @@ const palette = [
 ]
 
 const Row = ({ title, modifier = '' }) => (
-  <section>
+  <section className='m-b-48'>
     <h3 className='title'>{title}</h3>
     <div className='flex rowrap aic'>
       {palette.map((name) => (
@@ -22,7 +22,7 @@ const Ui = () => {
   return (
     <Page title='Buttons' meta='Hover a button: solid turns into outline, outline fills in.'
       description='Every button variant in Avior: solid and outline across the palette, hover states, the mini size and radius overrides.'>
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Default</h3>
         <div className='flex rowrap aic'>
           <a href='#top' className='button m-r-16 m-b-16'>button</a>
@@ -30,7 +30,7 @@ const Ui = () => {
         </div>
       </section>
 
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Radius</h3>
         <p>
           The default comes from the <code>$radius</code> variable. Override it on a single
@@ -45,7 +45,7 @@ const Ui = () => {
         </div>
       </section>
 
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Mini</h3>
         <p>
           <code>mini</code> is 32px tall with 20px side padding and no minimum width.
@@ -58,7 +58,7 @@ const Ui = () => {
         </div>
       </section>
 
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Light outline on a dark background</h3>
         <p>
           This is what the light colours are for. On a dark section a white or grey outline

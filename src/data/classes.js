@@ -1,8 +1,3 @@
-// The class reference the Docs page renders and filters. Ranges are written as text
-// because the stylesheet generates every step: p-t-0 … p-t-160 in steps of 4, and so on.
-//
-// Item shape: { cls: 'aic', css: 'align-items: center' }
-
 const groups = [
   {
     id: 'spacing',
@@ -28,7 +23,7 @@ const groups = [
   {
     id: 'flex',
     title: 'Flexbox',
-    note: 'The names are the Emmet abbreviations for the declarations themselves.',
+    note: 'First letters of the property, then of the value. align-items: center is aic.',
     items: [
       { cls: 'flex', css: 'display: flex' },
       { cls: 'rowrap', css: 'flex-flow: row wrap' },
@@ -44,16 +39,18 @@ const groups = [
   },
   {
     id: 'grid',
-    title: 'Columns',
-    note: 'Flexbox underneath: twelve columns, native gap, no wrapper row and no negative margins.',
+    title: 'Grid',
+    note: 'container, row and col, twelve columns. The gap is one class on the row, and every col stacks to full width on phones.',
     items: [
-      { cls: 'grid', css: 'a row whose children share the space equally' },
-      { cls: 'cols-3', css: 'three equal columns per row' },
-      { cls: 'col-8', css: 'a child takes eight of twelve' },
-      { cls: 'cols-auto-300', css: 'children start at 300px and wrap on their own' },
-      { cls: 'g-40', css: 'gap: 40px' },
-      { cls: 'gcg-24', css: 'column-gap: 24px' },
-      { cls: 'grg-24', css: 'row-gap: 24px' },
+      { cls: 'container', css: 'centred, max width $content, side padding $gutter' },
+      { cls: 'container fluid', css: 'full screen width, no side padding' },
+      { cls: 'row', css: 'a row of columns that wraps' },
+      { cls: 'col', css: 'equal share of the row' },
+      { cls: 'col-1 … col-12', css: 'N of twelve columns' },
+      { cls: 'col-auto', css: 'as wide as its content' },
+      { cls: 'flex-24', css: 'display: flex, gap: 24px' },
+      { cls: 'flex-24-32', css: 'display: flex, column-gap: 24px, row-gap: 32px' },
+      { cls: 'row flex-24', css: 'a row of columns with a 24px gap' },
     ],
   },
   {

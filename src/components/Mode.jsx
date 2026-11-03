@@ -3,14 +3,12 @@ import { PiSun, PiMoon } from 'react-icons/pi'
 
 const KEY = 'avior-theme'
 
-// Reads the saved choice, and falls back to the one the system asks for.
 const read = () => {
   const saved = window.localStorage.getItem(KEY)
   if (saved === 'dark' || saved === 'light') return saved
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
-//   <Theme />   the switch itself, rendered in the header
 const Theme = () => {
   const [theme, setTheme] = useState(read)
 

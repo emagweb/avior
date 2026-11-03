@@ -1,7 +1,7 @@
 {
   "name": "avior",
   "version": "0.1.0",
-  "description": "A starter stack for websites: React, Rsbuild and Sass utilities named after the Emmet dictionary. No external grid, no UI library.",
+  "description": "A free React starter with short, readable CSS classes and values taken straight from the design. Container, row and col grid, light and dark theme, no UI library.",
   "author": "Antonina Osypenko (https://github.com/emagweb)",
   "license": "MIT",
   "repository": {
@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/emagweb/avior#readme",
   "keywords": [
-    "emmet",
+    "react-starter",
     "sass",
     "utility-classes",
     "css-framework",

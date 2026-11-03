@@ -1,7 +1,7 @@
 {
   "short_name": "Avior",
   "name": "Avior — React + Rsbuild starter",
-  "description": "React, Rsbuild and Sass utilities named after the Emmet dictionary.",
+  "description": "A free React starter with short, readable CSS classes.",
   "icons": [
     {
       "src": "favicon.ico",

@@ -5,21 +5,38 @@
 ![React 19](https://img.shields.io/badge/React-19-61dafb)
 ![Rsbuild](https://img.shields.io/badge/Rsbuild-1.x-ff6b35)
 
-A starter stack for websites: React, Rsbuild and Sass utilities whose class names you don't
-have to memorise — they follow the Emmet dictionary, and numeric values come straight from
-the design. No external grid, no UI library.
+A free React starter for building websites fast, with its own small set of CSS classes.
+The names are short and obvious, the numbers come straight from the design, and the grid is
+the familiar container, row and col. Set your colours and fonts once, then build a whole site
+in a couple of days, by hand or with an AI agent.
 
 ```jsx
-<div className="df aic jcsb g-24 p-y-104">
+<section className="p-y-104">
+  <div className="container">
+    <div className="row aic flex-24">
+      <div className="col-6">…</div>
+      <div className="col-6">…</div>
+    </div>
+  </div>
+</section>
 ```
 
-| class     | Emmet   | CSS                              |
-| --------- | ------- | -------------------------------- |
-| `df`      | `d:f`   | `display: flex`                  |
-| `aic`     | `ai:c`  | `align-items: center`            |
-| `jcsb`    | `jc:sb` | `justify-content: space-between` |
-| `g-24`    | `g`     | `gap: 24px`                      |
-| `p-y-104` |         | `padding: 104px 0`               |
+| class     | CSS                                    |
+| --------- | -------------------------------------- |
+| `row`     | `display: flex` + `flex-wrap: wrap`    |
+| `aic`     | `align-items: center`                  |
+| `flex-24` | `display: flex` + `gap: 24px`          |
+| `col-6`   | six of twelve columns                  |
+| `p-y-104` | `padding-top` and `padding-bottom: 104px` |
+
+**Who it is for.** Front-end developers who want a React site finished in days, and anyone
+who builds with a coding agent: the rules in `AGENTS.md` keep the agent on the same small
+vocabulary, so the result stays readable and easy to fix by hand.
+
+**What is in the box.** React 19 with routing and a page template, a header with a mobile
+menu, a footer, light and dark themes, per-page titles and social previews, GA4 that stays
+off until you add an ID, and a pre-publish check. Four runtime dependencies, no CSS framework,
+no UI library, MIT licence.
 
 Avior is Epsilon Carinae, the second brightest star in Carina.
 
@@ -47,7 +64,8 @@ margin-left: auto               ->  mla
 ```
 
 When the property is obvious from the value, it is dropped: `upp` is `uppercase`,
-`ma` is `margin: auto`.
+`ma` is `margin: auto`. The grid keeps the names every grid system uses: `container`, `row`,
+`col-N`.
 
 Numeric families encode the unit in the family, not in the value:
 
@@ -57,17 +75,14 @@ Numeric families encode the unit in the family, not in the value:
 | `w-60`    | `width: 60%`          | base family is percentages               |
 | `w-p-480` | `width: 480px`        | `-p-` means pixels                       |
 | `h-72`    | `height: 72vh`        | base height family is vh                 |
-| `fz-18`   | `font-size: 18px`     | `fz` is the Emmet abbreviation, not `fs` |
+| `fz-18`   | `font-size: 18px`     | font size                                |
 | `fw-800`  | `font-weight: 800`    | numeric weight                           |
 | `lh-150`  | `line-height: 1.5`    | class names cannot contain a dot         |
 | `r-40`    | `border-radius: 40px` |                                          |
 | `bw-2`    | `border-width: 2px`   |                                          |
 | `s-40`    | 40px vertical spacer  | halves itself on small screens           |
 
-The dictionary is the one Emmet itself ships: `g` is `gap`, `maw` is `max-width`,
-`gtc` is `grid-template-columns`. If you know the CSS declaration, you know the class.
-
-Some names predate the strict rule and stay as aliases: `flex`, `oh`, `tc`, `tl`, `tr`,
+Some names are shorter than the rule would make them, because they are used everywhere: `flex`, `oh`, `tc`, `tl`, `tr`,
 `upp`, `rowrap`, `obfc`.
 
 The full list of classes, with ranges and behaviour, is in
@@ -97,16 +112,26 @@ Two names stand apart: `theme` and `accent`. They are aliases for other colours 
 palette, meant to be repointed per project — `$theme: $white`, `$accent: $pink` by default.
 Use them in components so a project can be recoloured without touching markup.
 
-## Container
+## Grid
 
 ```jsx
-<div className="container">…</div>
-<div className="container fluid">…</div>
+<div className="container">
+  <div className="row flex-24">
+    <div className="col-8">…</div>
+    <div className="col-4">…</div>
+  </div>
+</div>
 ```
 
 `container` holds the width, centres the block and keeps `$gutter` of side padding, so
-text never touches the edge of a phone. `fluid` takes the full width of the screen and
-drops that padding to zero. The maximum width is `$content`.
+text never touches the edge of a phone. `container fluid` takes the full width of the screen
+and drops that padding. The maximum width is `$content`.
+
+`row` is a wrapping flex row. Inside it, `col-1` … `col-12` take N of twelve columns,
+`col` shares the row equally with its siblings, and `col-auto` is as wide as its content.
+The gap is one class on the row (`flex-24`, or `flex-24-32` for 24px between columns and
+32px between rows), and the column widths already account for it.
+Below the `sm` breakpoint every column goes full width.
 
 ## Structure and load order
 
@@ -120,7 +145,7 @@ src/styles/
   inc/
     _variables.sass        the file you edit: theme and generation limits
     _responsive.sass       mixins =v-xl =v-lg =v-md =v-sm =v-xs
-    _grid.sass             flexbox grid, cols-*, col-*, gaps
+    _grid.sass             row, col, col-1 … col-12, gaps
     _helpers.sass          generated utilities, loaded last
   components/
     _colors.sass           .c-* .bg-* .bc-*
@@ -132,10 +157,8 @@ src/styles/
     _toggle.sass           the theme switch
     _theme.sass            everything the dark theme overrides
     _code.sass             code, pre and .frame
-    _docs.sass             the table, search box and demo block of the Docs page
     _header.sass
     _footer.sass
-    _page.sass
 ```
 
 ## Configuration
@@ -172,12 +195,13 @@ The limits decide how large the stylesheet is:
 | -------------------------------- | ------- | ---------------------------------------- |
 | `$step`                          | 4       | step for spacing, pixel sizes and radius |
 | `$max-space`                     | 160     | largest padding, margin, spacer and gap  |
+| `$max-gap`                       | 64      | largest value in two-value `flex-X-Y`    |
 | `$max-size`                      | 800     | largest `w-p-*` and `h-p-*`              |
 | `$step-percent` / `$max-percent` | 5 / 100 | percentage widths and `vh` heights       |
 | `$max-font`                      | 72      | largest `fz-*`                           |
 | `$columns`                       | 12      | columns in the grid                      |
 
-With the defaults the compiled stylesheet is about 97 KB. A step of 1 and the widest
+With the defaults the compiled stylesheet is about 105 KB. A step of 1 and the widest
 limits push it past 570 KB, which is what every value being available costs.
 
 ## Page metadata
@@ -280,6 +304,9 @@ once you have a domain:
 ```html
 <link rel="canonical" href="https://yourdomain.com/" />
 ```
+
+The Privacy, Cookie and Terms pages are templates, not legal documents. Replace the text
+with your own and have it reviewed for your jurisdiction.
 
 Also worth a look before going live: `theme_color` and `background_color` in
 `public/manifest.json`, the copyright line in `Footer`, and the contact details on the

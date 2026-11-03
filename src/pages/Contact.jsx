@@ -4,13 +4,13 @@ const Contact = () => {
   return (
     <Page title='Contact' meta='Template. Replace with your own details.'
       description='How to get in touch about Avior and where to report bugs or propose changes.'>
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Email</h3>
         <p>
           <a href='mailto:hello@example.com'>hello@example.com</a>
         </p>
       </section>
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Questions about the code</h3>
         <p>
           Bugs and proposals go to the repository issues. Before writing, have a look at
@@ -18,7 +18,7 @@ const Contact = () => {
           roadmap.
         </p>
       </section>
-      <section>
+      <section className='m-b-48'>
         <h3 className='title'>Company details</h3>
         <ul>
           <li>Organisation: your name here</li>

@@ -2,11 +2,13 @@
 
 header
   position: relative
-  height: 80px
+  height: 76px
+  border-bottom: 1px solid $border-soft
   > .container
     display: flex
     align-items: center
     justify-content: space-between
     height: 100%
-  +v-sm
-    height: auto
+
+html.dark header
+  border-color: $night-line

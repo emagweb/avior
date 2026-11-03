@@ -1,58 +1,58 @@
-import { PiKeyboard, PiRuler, PiSliders, PiPackage, PiCode, PiRobot } from 'react-icons/pi'
+import { PiTextAa, PiRuler, PiSquaresFour, PiCircleHalf } from 'react-icons/pi'
 
 const features = [
   {
-    Icon: PiKeyboard,
-    title: "Names you already know",
-    desc: "align-items: center is aic, gap is g-24, max-width is maw. Emmet abbreviations, not a dictionary invented for a framework.",
+    Icon: PiTextAa,
+    title: 'Names you can read',
+    text: 'First letters of the property, then of the value. align-items: center is aic, justify-content: space-between is jcsb. The markup explains itself, so it needs no comments.',
+    sample: 'flex aic jcsb',
   },
   {
     Icon: PiRuler,
-    title: "Values from the design",
-    desc: "The mockup says 104px, you write p-t-104. No scale to translate and nothing to configure when a value is not in it.",
+    title: 'Values from the design',
+    text: 'The mockup says 104px, you write p-t-104. No scale to translate, nothing to look up, nothing to configure.',
+    sample: 'p-t-104 fz-18 r-12',
   },
   {
-    Icon: PiSliders,
-    title: "One file to configure",
-    desc: "Colours, fonts, container, radius, steps. Every class and component follows from it.",
+    Icon: PiSquaresFour,
+    title: 'A grid of 12 columns',
+    text: 'container, row and col, the grid you already know from Bootstrap. col-4 is a third, col-6 a half, and every column stacks on phones.',
+    sample: 'row flex-24 col-6',
   },
   {
-    Icon: PiPackage,
-    title: "Nothing else in the box",
-    desc: "React, Rsbuild, Sass. No external grid, no UI library, no runtime. Twelve columns on flexbox and a gap that is one class.",
+    Icon: PiCircleHalf,
+    title: 'One file, two themes',
+    text: 'Colours, fonts, widths and radius live in one variables file. Light and dark themes are built in, with a switch that remembers the choice.',
+    sample: '$accent $basic $radius',
   },
-  {
-    Icon: PiCode,
-    title: "Markup you can read",
-    desc: "Six utilities in 47 characters where a long-form framework needs 150. You read the layout instead of scrolling past it.",
-  },
-  {
-    Icon: PiRobot,
-    title: "Agents handle it too",
-    desc: "The rules live in AGENTS.md, the classes in docs, and every non-obvious line in a decisions log. An agent extends it without guessing.",
-  },
-];
+]
 
 const Features = () => {
   return (
-    <section id="features" className="p-y-80">
-      <div className="container">
-        <div className='w-60 wide'>
-          <span className='eyebrow'>In the box</span>
-          <h2 className="title-section">Six things, nothing else</h2>
+    <section id='why' className='p-y-104'>
+      <div className='container'>
+        <div className='row jcc tc'>
+          <div className='col-8'>
+            <h2 className='title-section'>Why it is <span className='c-accent'>fast</span></h2>
+            <p className='title-lead c-medium'>
+              Four decisions that save hours on every page.
+            </p>
+          </div>
         </div>
-        <div className="cols-3 g-24 m-t-64">
-          {features.map(({ Icon, title, desc }) => (
-            <div key={title} className='card'>
-              <Icon className='icon' aria-hidden='true' />
-              <h3 className="title-card">{title}</h3>
-              <p>{desc}</p>
+
+        <div className='row flex-32 m-t-56'>
+          {features.map(({ Icon, title, text, sample }) => (
+            <div key={title} className='col-6 bg-light r-20 p-y-40 p-x-40'>
+              <Icon className='fz-40 c-accent m-b-24' aria-hidden='true' />
+              <h3 className='title-card'>{title}</h3>
+              <p className='c-medium'>{text}</p>
+              <p className='m-t-24'><code className='bg-white'>{sample}</code></p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export { Features };
+export { Features }

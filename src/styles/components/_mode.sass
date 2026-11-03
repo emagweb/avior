@@ -1,5 +1,4 @@
 @use "../core" as *
-@use "sass:color"
 
 html.dark
   color-scheme: dark
@@ -16,20 +15,8 @@ html.dark
     color: $night-text !important
   .c-medium
     color: $night-muted !important
-  .eyebrow,
-  .numeral,
-  .versus .label,
-  .versus.muted .count,
-  .versus.muted code,
-  .swatch-hex,
-  .rows th
-    color: $night-muted
   .bc-dark
     border-color: $night-line !important
-  .icon
-    color: color.scale($icon, $lightness: 18%)
-  .button .icon
-    color: currentColor
   code
     color: $night-text
     border-color: $night-line

@@ -1,19 +1,28 @@
 @use "../core" as *
 
 footer
-  font-size: 1rem
+  padding: 56px 0
+  font-size: .9375rem
+  border-top: 1px solid $border-soft
   p
-    margin-bottom: 0
+    margin: 0
+    color: $medium
+  nav
+    display: flex
+    flex-wrap: wrap
+    gap: 8px 24px
+    a
+      margin: 0
+      &:hover
+        color: $accent
   +v-sm
     text-align: center
-    .container
-      display: block
-    p span
-      display: block
-      padding: 16px 0 40px
+    .logo
+      justify-content: center
     nav
-      a
-        display: block
-        margin: 0 auto 24px
-        &:last-child
-          margin-bottom: 0
+      justify-content: center
+
+html.dark footer
+  border-color: $night-line
+  p
+    color: $night-muted
