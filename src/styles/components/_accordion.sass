@@ -1,0 +1,53 @@
+@use "../core" as *
+
+$accordion-gap: 8px !default
+$accordion-padding: 16px 20px !default
+$accordion-radius: 12px !default
+$accordion-line: var(--line) !default
+$accordion-background: var(--page) !default
+
+.accordion
+  display: flex
+  flex-direction: column
+  gap: $accordion-gap
+  &-item
+    border: 1px solid $accordion-line
+    border-radius: $accordion-radius
+    background-color: $accordion-background
+    &[open] > .accordion-head::after
+      transform: rotate(-135deg)
+      margin-top: 4px
+  &-head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 16px
+    padding: $accordion-padding
+    font-size: 1rem
+    font-weight: 600
+    line-height: 1.5rem
+    list-style: none
+    cursor: pointer
+    &::-webkit-details-marker
+      display: none
+    &::after
+      content: ""
+      flex-shrink: 0
+      width: 8px
+      height: 8px
+      margin-top: -4px
+      border-right: 2px solid var(--muted)
+      border-bottom: 2px solid var(--muted)
+      transform: rotate(45deg)
+      transition: transform ease .2s
+    &:focus-visible
+      outline: 2px solid var(--accent)
+      outline-offset: -2px
+      border-radius: $accordion-radius
+  &-body
+    padding: 0 20px 16px
+    color: var(--muted)
+    font-size: .875rem
+    line-height: 1.375rem
+    p:last-child
+      margin-bottom: 0

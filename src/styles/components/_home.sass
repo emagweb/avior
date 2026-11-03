@@ -1,0 +1,66 @@
+@use "../core" as *
+
+#hero
+  padding: 96px 0 64px
+  background-color: var(--page)
+  background-image: linear-gradient(to bottom, transparent 60%, var(--page)), url("../../assets/backgrounds/hero-light.webp")
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+  +v-sm
+    padding: 64px 0 40px
+  .code
+    margin: 0
+
+#paths
+  padding: 0
+
+#showcase,
+#layers,
+#numbers
+  padding: 96px 0
+  +v-sm
+    padding: 64px 0
+
+#showcase
+  .col-6.card
+    padding: 0
+    border: 0
+    border-radius: 0
+    background-color: transparent
+    &:hover
+      box-shadow: none
+      img
+        border-color: var(--muted)
+  img
+    display: block
+    width: 100%
+    height: auto
+    aspect-ratio: 16 / 10
+    margin-bottom: 20px
+    object-fit: cover
+    object-position: top
+    border: 1px solid var(--line-soft)
+    border-radius: 12px
+    transition: border-color ease .2s
+  .col-6.card
+    .card-head
+      flex-wrap: wrap
+      justify-content: space-between
+      margin-bottom: 0
+  .col-4.flex
+    +v-sm
+      justify-content: flex-start !important
+
+#layers
+  .tabs
+    text-align: center
+  .tabs-panel
+    padding-top: 40px
+    text-align: left
+
+#numbers
+  border-top: 1px solid var(--line-soft)
+
+body.dark #hero
+  background-image: linear-gradient(to bottom, transparent 60%, var(--page)), url("../../assets/backgrounds/hero-dark.webp")

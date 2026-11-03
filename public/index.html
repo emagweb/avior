@@ -2,49 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Avior — React + Rsbuild starter</title>
+    <title>Avior — a design system for React</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#1C1830" />
-    <meta
-      name="description"
-      content="Avior is a free React starter with short, readable CSS classes and values taken straight from the design. Build a whole site in a couple of days, yourself or with an AI agent."
-    />
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E0D14" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="Avior is an open source design system for React and Rsbuild. Variables, helpers and components that build a different site every time, shaped by its content." />
     <meta name="application-name" content="Avior" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Avior — React + Rsbuild starter" />
-    <meta
-      property="og:description"
-      content="A free React starter with short, readable CSS classes. Build a site in days, yourself or with an AI agent."
-    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Avior — a design system for React" />
+    <meta property="og:description" content="Avior is an open source design system for React and Rsbuild. Variables, helpers and components that build a different site every time, shaped by its content." />
     <meta property="og:site_name" content="Avior" />
-    <meta property="og:image" content="/logo512.png" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@300..800&display=swap"
-    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Avior: a design system for React that builds a different site every time." />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/png" sizes="192x192" href="/logo192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/logo512.png" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body>
     <script>
       (function () {
         try {
-          var saved = localStorage.getItem('avior-theme');
+          var saved = localStorage.getItem('avior-mode');
           var dark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
-          if (dark) document.documentElement.classList.add('dark');
+          if (dark) document.body.classList.add('dark');
         } catch (e) {}
       })();
     </script>
-  </head>
-  <body>
     <div id="root"></div>
   </body>
 </html>

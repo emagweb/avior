@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { PiSun, PiMoon } from 'react-icons/pi'
+import { PiSunBold, PiMoonBold } from 'react-icons/pi'
 
-const KEY = 'avior-theme'
+const KEY = 'avior-mode'
 
 const read = () => {
   const saved = window.localStorage.getItem(KEY)
@@ -9,26 +9,31 @@ const read = () => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
-const Theme = () => {
-  const [theme, setTheme] = useState(read)
+const Mode = () => {
+  const [mode, setMode] = useState(null)
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-    window.localStorage.setItem(KEY, theme)
-  }, [theme])
+    setMode(read())
+  }, [])
 
-  const dark = theme === 'dark'
+  useEffect(() => {
+    if (!mode) return
+    document.body.classList.toggle('dark', mode === 'dark')
+    window.localStorage.setItem(KEY, mode)
+  }, [mode])
+
+  const dark = mode === 'dark'
 
   return (
     <button
       type='button'
       className='toggle'
       aria-pressed={dark}
-      aria-label={dark ? 'Switch to the light theme' : 'Switch to the dark theme'}
-      onClick={() => setTheme(dark ? 'light' : 'dark')}>
-      {dark ? <PiSun aria-hidden='true' /> : <PiMoon aria-hidden='true' />}
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      onClick={() => setMode(dark ? 'light' : 'dark')}>
+      {dark ? <PiSunBold aria-hidden='true' /> : <PiMoonBold aria-hidden='true' />}
     </button>
   )
 }
 
-export { Theme }
+export { Mode }

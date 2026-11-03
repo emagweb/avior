@@ -1,47 +1,24 @@
 @use "../core" as *
 
-html.dark
+body
+  --page: #{$white}
+  --surface: #{$light}
+  --text: #{$dark}
+  --muted: #{$medium}
+  --line: #{$border}
+  --line-soft: #{$border-soft}
+  --accent: #{$accent}
+  color: var(--text)
+  background-color: var(--page)
+
+body.dark
+  --page: #{$night}
+  --surface: #{$night-surface}
+  --text: #{$night-text}
+  --muted: #{$night-muted}
+  --line: #{$night-line}
+  --line-soft: #{$night-line}
+  --accent: #{$night-accent}
   color-scheme: dark
-  body
-    color: $night-text
-    background-color: $night
-  .bg-white,
-  .bg-theme
-    background-color: $night !important
-  .bg-light,
-  .bg-grey
-    background-color: $night-surface !important
-  .c-dark
-    color: $night-text !important
-  .c-medium
-    color: $night-muted !important
-  .bc-dark
-    border-color: $night-line !important
-  code
-    color: $night-text
-    border-color: $night-line
-    background-color: $night-surface
-  .frame
-    border-color: $night-line
-    background-color: $night
-  pre.frame code
-    background-color: transparent
-  .button
-    &:focus-visible
-      outline-color: $night-text
-    &.outline
-      color: $night-text
-  .button.dark
-    border-color: $night-text
-    color: $night
-    background-color: $night-text
-    &:hover
-      border-color: $white
-      background-color: $white
-    &.outline
-      color: $night-text
-      border-color: $night-text
-      background-color: transparent
-      &:hover
-        color: $night
-        background-color: $night-text
+  .c-accent
+    color: var(--accent) !important

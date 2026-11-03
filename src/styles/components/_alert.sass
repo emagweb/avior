@@ -1,0 +1,35 @@
+@use "../core" as *
+
+$alert-padding: 12px 16px !default
+$alert-gap: 12px !default
+$alert-radius: $radius !default
+$alert-tint: 8% !default
+$alert-edge: 32% !default
+
+.alert
+  display: flex
+  align-items: flex-start
+  gap: $alert-gap
+  margin: 0 0 16px
+  padding: $alert-padding
+  color: var(--text)
+  font-size: .875rem
+  line-height: 1.375rem
+  border: 1px solid var(--line)
+  border-radius: $alert-radius
+  background-color: var(--surface)
+  > svg
+    flex-shrink: 0
+    margin-top: 1px
+    font-size: 1.25rem
+    color: var(--muted)
+  p
+    margin: 0
+  strong
+    font-weight: 600
+  @each $name, $color in $palette
+    &.#{$name}
+      border-color: color-mix(in srgb, #{$color} #{$alert-edge}, var(--page))
+      background-color: color-mix(in srgb, #{$color} #{$alert-tint}, var(--page))
+      > svg
+        color: $color

@@ -1,0 +1,50 @@
+@use "../core" as *
+
+$card-padding: 24px !default
+$card-gap: 16px !default
+$card-radius: 12px !default
+$card-line: var(--line) !default
+$card-background: var(--page) !default
+$card-hover-line: var(--muted) !default
+$card-shadow: 0 8px 24px rgba($dark, .06) !default
+
+.card
+  display: flex
+  flex-direction: column
+  padding: $card-padding
+  color: var(--text)
+  border: 1px solid $card-line
+  border-radius: $card-radius
+  background-color: $card-background
+  transition: border-color ease .2s, box-shadow ease .2s
+  &-head
+    display: flex
+    align-items: center
+    gap: 8px
+    margin-bottom: $card-gap
+    svg
+      flex-shrink: 0
+      font-size: 1.5rem
+  &-body
+    flex: 1 1 auto
+    color: var(--muted)
+    font-size: .875rem
+    line-height: 1.375rem
+  &-foot
+    display: flex
+    align-items: center
+    gap: 8px
+    margin-top: $card-gap
+    padding-top: $card-gap
+    color: var(--accent)
+    font-size: .875rem
+    font-weight: 500
+    border-top: 1px solid var(--line-soft)
+
+a.card
+  &:hover
+    border-color: $card-hover-line
+    box-shadow: $card-shadow
+  &:focus-visible
+    outline: 2px solid var(--accent)
+    outline-offset: 2px

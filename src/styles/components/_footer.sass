@@ -1,12 +1,13 @@
 @use "../core" as *
 
 footer
-  padding: 56px 0
-  font-size: .9375rem
-  border-top: 1px solid $border-soft
+  padding: 48px 0
+  font-size: .875rem
+  line-height: 1.25rem
+  border-top: 1px solid var(--line-soft)
   p
     margin: 0
-    color: $medium
+    color: var(--muted)
   nav
     display: flex
     flex-wrap: wrap
@@ -21,8 +22,3 @@ footer
       justify-content: center
     nav
       justify-content: center
-
-html.dark footer
-  border-color: $night-line
-  p
-    color: $night-muted

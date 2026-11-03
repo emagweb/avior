@@ -1,0 +1,27 @@
+@use "../core" as *
+
+$badge-height: 24px !default
+$badge-padding: 0 8px !default
+$badge-radius: 6px !default
+$badge-tint: 12% !default
+$badge-edge: 32% !default
+
+.badge
+  display: inline-flex
+  align-items: center
+  gap: 4px
+  height: $badge-height
+  padding: $badge-padding
+  color: var(--text)
+  font-size: .75rem
+  font-weight: 600
+  line-height: 1rem
+  white-space: nowrap
+  vertical-align: middle
+  border: 1px solid var(--line)
+  border-radius: $badge-radius
+  background-color: var(--surface)
+  @each $name, $color in $palette
+    &.#{$name}
+      border-color: color-mix(in srgb, #{$color} #{$badge-edge}, var(--page))
+      background-color: color-mix(in srgb, #{$color} #{$badge-tint}, var(--page))

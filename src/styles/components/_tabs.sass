@@ -1,0 +1,44 @@
+@use "../core" as *
+
+$tabs-gap: 4px !default
+$tabs-padding: 4px !default
+$tabs-height: 32px !default
+$tabs-radius: $radius !default
+$tabs-background: var(--surface) !default
+$tabs-active: var(--page) !default
+$tabs-shadow: 0 1px 2px rgba($dark, .08) !default
+
+.tabs
+  &-list
+    display: inline-flex
+    flex-wrap: wrap
+    gap: $tabs-gap
+    padding: $tabs-padding
+    border-radius: $tabs-radius
+    background-color: $tabs-background
+    button
+      height: $tabs-height
+      padding: 0 12px
+      color: var(--muted)
+      font-size: .875rem
+      font-weight: 500
+      line-height: 1.25rem
+      border: 0
+      border-radius: calc(#{$tabs-radius} - #{$tabs-padding})
+      background-color: transparent
+      cursor: pointer
+      transition: color ease .2s, background-color ease .2s
+      &:hover
+        color: var(--text)
+      &[aria-selected="true"]
+        color: var(--text)
+        background-color: $tabs-active
+        box-shadow: $tabs-shadow
+      &:focus-visible
+        outline: 2px solid var(--accent)
+        outline-offset: 1px
+  &-panel
+    padding-top: 16px
+    &:focus-visible
+      outline: 2px solid var(--accent)
+      outline-offset: 4px

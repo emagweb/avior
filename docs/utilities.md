@@ -71,6 +71,7 @@ on a tablet says so in its component Sass with the `=v-*` mixins.
 | `flex`           | `display: flex`                              |
 | `rowrap`         | `flex-flow: row wrap`                        |
 | `oh`             | `overflow: hidden`                           |
+| `lines`          | a hairline, `var(--line-soft)`, between its children |
 
 ## Alignment
 
@@ -101,36 +102,39 @@ on a tablet says so in its component Sass with the `=v-*` mixins.
 
 A heading takes one class from this family and nothing else. Alignment, width and any
 extra spacing belong to the element around it, so retuning a heading never means editing
-markup. Sizes are `rem` against a 16px root, and every class leaves the same 24px below
-itself: a heading and the text under it read as one block, at any size.
+markup. Sizes are `rem` against a 16px root, and every class owns the gap below itself,
+so a heading and the text under it read as one block at any size.
 
-| class             | size | weight | line-height | gap  | role                                 |
-| ----------------- | ---- | ------ | ----------- | ---- | ------------------------------------ |
-| `title-intro`     | 64px | 700    | 1.05        | 24px | the hero `h1`, one per site          |
-| `title-intro-sub` | 40px | 600    | 1.2         | 24px | the line that follows the hero `h1`  |
-| `title-page`      | 48px | 500    | 1.1         | 24px | `h1` of an inner page, set by `Page` |
-| `title-section`   | 40px | 600    | 1.2         | 24px | section heading                      |
-| `title`           | 28px | 600    | 1.3         | 24px | section heading inside a text page   |
-| `title-lead`      | 24px | 400    | 1.5         | 24px | lead paragraph, 20px below `sm`      |
-| `title-sub`       | 24px | 500    | 1.35        | 24px | subheading inside a text block       |
-| `title-card`      | 20px | 600    | 1.4         | 24px | card or list item heading            |
-| `title-mini`      | 16px | 600    | 1.5         | 24px | label at body size                   |
+Every line height is a multiple of four.
+
+| class             | size | weight | line-height | gap  | role                                  |
+| ----------------- | ---- | ------ | ----------- | ---- | ------------------------------------- |
+| `title-label`     | 12px | 600    | 20px        | 16px | uppercase label above a heading       |
+| `title-intro`     | 56px | 600    | 64px        | 24px | the hero `h1`, one per site           |
+| `title-intro-sub` | 20px | 400    | 32px        | 32px | the line that follows the hero `h1`   |
+| `title-page`      | 38px | 600    | 48px        | 8px  | `h1` of an inner page, set by `Page`  |
+| `title-section`   | 30px | 600    | 40px        | 16px | section heading                       |
+| `title`           | 24px | 600    | 32px        | 16px | section heading inside a text page    |
+| `title-lead`      | 20px | 400    | 32px        | 24px | lead paragraph, 18px below `sm`       |
+| `title-sub`       | 20px | 600    | 28px        | 12px | subheading inside a text block        |
+| `title-card`      | 16px | 600    | 24px        | 8px  | card or list item heading             |
+| `title-mini`      | 14px | 600    | 20px        | 4px  | label at small size                   |
 
 The two `intro` classes belong to the hero and nowhere else. Further down a page the
 largest heading is `title-section`.
 
-The four large sizes step down twice, so a heading never fills a phone screen:
+The large sizes step down, so a heading never fills a phone screen:
 
 ```
-title-intro        64 → 44 → 36
-title-page         48 → 36 → 32
-title-intro-sub    40 → 32 → 28
-title-section      40 → 32 → 28
-                        sm    xs
+title-intro        56 → 48 → 40 → 32
+title-page         38 →      30
+title-intro-sub    20 →      18
+title-section      30 →      24
 ```
 
-No title class sets a font. The face comes from `body`, so changing `$basic` changes every
-heading with it. A second face is applied where it is needed with `ff-intro`.
+No title class sets a font: the face comes from `body`, so changing `$basic` changes every
+heading with it. A second face is applied where needed with `ff-intro`. `title-label` and
+`title-intro-sub` also set a colour, `var(--muted)`, so they follow the mode.
 
 ## Spacing shortcuts
 
@@ -199,6 +203,20 @@ these colours, it is treated as light too.
 | `b-none` | `border: none`                                          |
 | `bg-tr`  | `background-color: transparent`                         |
 
+Six classes follow the theme instead of naming a colour. They read the custom properties
+that `components/_mode.sass` sets on `body` and `body.dark`:
+
+| class           | what it is                                  |
+| --------------- | ------------------------------------------- |
+| `bg-page`       | the page background                         |
+| `bg-surface`    | a tinted section or card                    |
+| `c-text`        | body text                                   |
+| `c-muted`       | text that steps back                        |
+| `bc-line`       | a visible border                            |
+| `bc-line-soft`  | a hairline inside a block                   |
+
+A palette class such as `bg-white` or `c-dark` keeps that exact colour in both themes.
+
 ## Why `!important`
 
 Most utilities carry `!important`. A utility is a single class and loses to any component
@@ -208,3 +226,18 @@ styles never compete with utilities and stay clean. See [decisions.md](decisions
 
 `dashed` and `double` are deliberately without `!important`: they are declared after the
 `bc-*` block in the same file, and with equal specificity the later rule wins.
+
+## Components
+
+Each component lives in `components/_<name>.sass`, with its variables at the top. The docs
+site has a page for each, with an example and the table of its variables.
+
+| class            | parts                                              | page             |
+| ---------------- | -------------------------------------------------- | ---------------- |
+| `button`         | variants `dark`, `outline`, `mini`, palette names  | `/docs/button`   |
+| `card`           | `card-head`, `card-body`, `card-foot`              | `/docs/card`     |
+| `tabs`           | `tabs-list`, `tabs-panel`                          | `/docs/tabs`     |
+| `accordion`      | `accordion-item`, `accordion-head`, `accordion-body` | `/docs/accordion` |
+| `alert`          | palette names as colour variants                   | `/docs/alert`    |
+| `badge`          | palette names as colour variants                   | `/docs/badge`    |
+| `code`           | `code-copy`                                        | `/docs/code`     |

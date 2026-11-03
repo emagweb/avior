@@ -1,12 +1,12 @@
 {
   "short_name": "Avior",
-  "name": "Avior — React + Rsbuild starter",
-  "description": "A free React starter with short, readable CSS classes.",
+  "name": "Avior — a design system for React",
+  "description": "An open source design system for React and Rsbuild. Variables, helpers and components that build a different site every time.",
   "icons": [
     {
       "src": "favicon.ico",
       "type": "image/x-icon",
-      "sizes": "64x64 48x48 32x32 16x16"
+      "sizes": "64x64 32x32 16x16"
     },
     {
       "src": "logo192.png",
@@ -23,6 +23,6 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#FF2790",
+  "theme_color": "#7222DB",
   "background_color": "#FFFFFF"
 }

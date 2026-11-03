@@ -24,7 +24,7 @@
   "type": "module",
   "scripts": {
     "check": "node scripts/check-publish.mjs",
-    "build": "rsbuild build",
+    "build": "rsbuild build && node scripts/prerender.mjs",
     "start": "rsbuild dev --open",
     "preview": "rsbuild preview"
   },
@@ -35,6 +35,7 @@
     "react-router-dom": "^7.12.0"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "8.0.0",
     "@rsbuild/core": "^1.6.14",
     "@rsbuild/plugin-image-compress": "^1.3.1",
     "@rsbuild/plugin-react": "^1.4.2",

@@ -3,17 +3,20 @@
 .menu
   display: flex
   align-items: center
-  gap: 20px
+  gap: 16px
   nav
     display: flex
     align-items: center
+    gap: 24px
     a
-      margin: 0 14px
-      font-size: .9375rem
+      margin: 0
+      color: var(--muted)
+      font-size: .875rem
       font-weight: 500
-      transition: color ease .2s
-      &:hover
-        color: $accent
+      line-height: 1.25rem
+      &:hover,
+      &[aria-current="page"]
+        color: var(--text)
 
 .burger
   display: none
@@ -55,10 +58,10 @@
     left: 0
     z-index: 20
     display: block
-    padding: 8px 5% 24px
+    padding: 8px 24px 24px
     text-align: center
-    border-bottom: 1px solid $border
-    background-color: $white
+    border-bottom: 1px solid var(--line)
+    background-color: var(--page)
     opacity: 0
     visibility: hidden
     transform: translateY(-8px)
@@ -72,13 +75,9 @@
       a
         display: block
         margin: 0
-        padding: 14px 0
-        font-size: 1.0625rem
+        padding: 12px 0
+        font-size: 1rem
     .toggle
       margin-top: 16px
-
-html.dark
-  .menu
-    +v-sm
-      border-color: $night-line
-      background-color: $night
+      & + .toggle
+        margin-left: 8px

@@ -1,0 +1,24 @@
+name: Showcase
+description: Send a site built with Avior for the showcase on the home page.
+title: "Showcase: "
+labels: ["showcase"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Link to the live site
+      placeholder: https://
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: About the project
+      description: A few words about the site and who it is for.
+    validations:
+      required: true
+  - type: textarea
+    id: changes
+    attributes:
+      label: What you changed or added
+      description: Variables, components or anything else you built on top of Avior. Optional.

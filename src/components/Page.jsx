@@ -8,10 +8,10 @@ const Page = ({ title, meta, description, menu, footerMenu, children }) => {
   return (
     <div>
       <Header {...(menu && { menu })} />
-      <div className='bg-light p-t-96 p-b-64'>
+      <div className='bg-surface p-t-96 p-b-64'>
         <div className='container'>
           {title && <h1 className='title-page'>{title}</h1>}
-          {meta && <p className='title-lead c-medium m-b-0'>{meta}</p>}
+          {meta && <p className='title-lead c-muted m-b-0'>{meta}</p>}
         </div>
       </div>
       <main className='p-y-80'>

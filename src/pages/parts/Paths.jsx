@@ -1,45 +1,44 @@
-import { PiCodeBlock, PiChatCircleText } from 'react-icons/pi'
+import { PiRocketLaunch, PiSliders, PiGitPullRequest, PiArrowRight } from 'react-icons/pi'
+
+const paths = [
+  {
+    Icon: PiRocketLaunch,
+    title: 'Use it',
+    text: 'Clone the repository, run two commands and build your site on a working base: routing, pages, light and dark mode, meta tags.',
+    link: 'Installation',
+    href: '/docs/installation',
+  },
+  {
+    Icon: PiSliders,
+    title: 'Make it yours',
+    text: 'Colours, type, spacing and every component are variables. Change them in one file and the same markup becomes your site.',
+    link: 'Variables',
+    href: '/docs/variables',
+  },
+  {
+    Icon: PiGitPullRequest,
+    title: 'Contribute',
+    text: 'Missing a component? Write it so others can tune it with variables, and send a pull request. The engine is small enough to read in an evening.',
+    link: 'How to contribute',
+    href: '/docs/contributing',
+  },
+]
 
 const Paths = () => {
   return (
-    <section id='paths' className='p-y-104'>
+    <section id='paths'>
       <div className='container'>
-        <div className='row jcc tc'>
-          <div className='col-8'>
-            <h2 className='title-section'>Write it yourself, <span className='c-accent'>or don't</span></h2>
-            <p className='title-lead c-medium'>
-              Build the pages by hand, or give the repository to an AI agent. The result is the
-              same clean, readable code.
-            </p>
-          </div>
-        </div>
-
-        <div className='row flex-32 m-t-56'>
-          <div className='col-6 bg-light r-20 p-y-40 p-x-40'>
-            <PiCodeBlock className='fz-40 c-accent m-b-24' aria-hidden='true' />
-            <h3 className='title-sub'>You write the code</h3>
-            <p className='c-medium'>
-              For front-end developers who want a React site <strong className='c-dark'>done
-              in a couple of days</strong>. Routing, pages, header with a mobile menu, footer,
-              dark theme, meta tags and analytics are already wired up. You go straight to the
-              sections.
-            </p>
-          </div>
-
-          <div className='col-6 bg-light r-20 p-y-40 p-x-40'>
-            <PiChatCircleText className='fz-40 c-accent m-b-24' aria-hidden='true' />
-            <h3 className='title-sub'>An agent writes it for you</h3>
-            <p className='c-medium'>
-              Describe the page to Claude, Cursor, Kiro or any coding agent. The rules in the
-              repository keep it on <strong className='c-dark'>the same small set of
-              classes</strong>, so it builds your project fast and you can still fix every line
-              by hand.
-            </p>
-            <p className='bg-white r-12 p-y-16 p-x-24 m-t-24 fz-16'>
-              “Add a pricing section with three plans, the middle one highlighted. Use the
-              existing classes, no new CSS.”
-            </p>
-          </div>
+        <div className='row flex-24'>
+          {paths.map(({ Icon, title, text, link, href }) => (
+            <a key={title} href={href} className='col-4 card'>
+              <div className='card-head'>
+                <Icon className='c-accent' aria-hidden='true' />
+                <h2 className='title-card m-b-0'>{title}</h2>
+              </div>
+              <p className='card-body'>{text}</p>
+              <span className='card-foot'>{link}<PiArrowRight aria-hidden='true' /></span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

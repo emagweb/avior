@@ -1,32 +1,33 @@
+import { useEffect } from 'react'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { scrollToSection } from '../components/Nav'
 import { useMeta } from '../hooks/useMeta'
 import { Hero } from './parts/Hero'
-import { Projects } from './parts/Projects'
-import { Features } from './parts/Features'
-import { Reference } from './parts/Reference'
 import { Paths } from './parts/Paths'
-import { Steps } from './parts/Steps'
-import { Safe } from './parts/Safe'
-import { OpenSource } from './parts/OpenSource'
-import { Finale } from './parts/Finale'
+import { Showcase } from './parts/Showcase'
+import { Layers } from './parts/Layers'
+import { Numbers } from './parts/Numbers'
 
 const Home = () => {
-  useMeta(null, 'Avior is a free React starter with a mini CSS framework inside: short class names, values straight from the design and a 12-column grid. Build a website in days, yourself or with an AI agent.')
+  useMeta(null, 'Avior is an open source design system for React and Rsbuild. Variables, helpers and components that build a different site every time, shaped by its content.')
+
+  useEffect(() => {
+    const { hash, pathname, search } = window.location
+    if (!hash) return
+    scrollToSection(decodeURIComponent(hash.slice(1)))
+    window.history.replaceState(window.history.state, '', pathname + search)
+  }, [])
 
   return (
     <div>
       <Header />
       <main>
         <Hero />
-        <Projects />
-        <Features />
-        <Reference />
         <Paths />
-        <Steps />
-        <Safe />
-        <OpenSource />
-        <Finale />
+        <Showcase />
+        <Layers />
+        <Numbers />
       </main>
       <Footer />
     </div>

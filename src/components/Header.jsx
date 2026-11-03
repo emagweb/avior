@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import { PiGithubLogoBold } from 'react-icons/pi'
 import logo from '../assets/svg/logo.svg'
 import { Nav } from './Nav'
-import { Theme } from './Theme'
+import { Mode } from './Mode'
 import { main } from '../data/menu'
+import { repo } from '../data/links'
 
 const Header = ({ menu = main, brand = 'Avior' }) => {
   const [open, setOpen] = useState(false)
@@ -50,7 +52,10 @@ const Header = ({ menu = main, brand = 'Avior' }) => {
 
         <div className={open ? 'menu open' : 'menu'} id='menu'>
           <Nav items={menu} onNavigate={() => setOpen(false)} />
-          <Theme />
+          <a href={repo} className='toggle' target='_blank' rel='noreferrer' aria-label='Avior on GitHub'>
+            <PiGithubLogoBold aria-hidden='true' />
+          </a>
+          <Mode />
         </div>
       </div>
     </header>

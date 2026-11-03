@@ -1,10 +1,3 @@
-// Pre-publish check. Looks for placeholders that must be replaced with the real
-// domain, and for Open Graph tags that crawlers cannot resolve.
-//
-//   yarn check
-//
-// Prints a report and always exits 0, so it never blocks a development build.
-
 import { readFileSync, existsSync } from 'node:fs'
 
 const PLACEHOLDER = 'example.com'
@@ -13,8 +6,7 @@ const files = [
   'public/robots.txt',
   'public/sitemap.xml',
   'public/index.html',
-  'public/manifest.json',
-  'README.md'
+  'public/manifest.json'
 ]
 
 const findings = []

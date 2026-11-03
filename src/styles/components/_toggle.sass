@@ -4,25 +4,20 @@
   display: inline-flex
   align-items: center
   justify-content: center
-  width: 40px
-  height: 40px
+  width: 32px
+  height: 32px
   padding: 0
-  color: $medium
-  font-size: 1.125rem
-  border: 1px solid $border
-  border-radius: 50%
+  color: var(--muted)
+  font-size: 1rem
+  border: 1px solid var(--line)
+  border-radius: $radius
   background-color: transparent
   cursor: pointer
-  transition: color ease .2s, border-color ease .2s
+  transition: color ease .2s, border-color ease .2s, background-color ease .2s
   &:hover
-    color: $dark
-    border-color: $medium
+    color: var(--text)
+    border-color: var(--muted)
+    background-color: var(--surface)
   &:focus-visible
     outline: 2px solid $accent
     outline-offset: 2px
-
-html.dark .toggle
-  border-color: $night-line
-  &:hover
-    color: $night-text
-    border-color: $night-muted
