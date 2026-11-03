@@ -52,10 +52,12 @@ const Header = ({ menu = main, brand = 'Avior' }) => {
 
         <div className={open ? 'menu open' : 'menu'} id='menu'>
           <Nav items={menu} onNavigate={() => setOpen(false)} />
-          <a href={repo} className='toggle' target='_blank' rel='noreferrer' aria-label='Avior on GitHub'>
-            <PiGithubLogoBold aria-hidden='true' />
-          </a>
-          <Mode />
+          <div className='flex-8 aic jcc'>
+            <a href={repo} className='toggle' target='_blank' rel='noreferrer' aria-label='Avior on GitHub'>
+              <PiGithubLogoBold aria-hidden='true' />
+            </a>
+            <Mode />
+          </div>
         </div>
       </div>
     </header>
