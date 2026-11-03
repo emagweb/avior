@@ -17,6 +17,7 @@ import { Typography } from './pages/docs/Typography'
 import { Mode } from './pages/docs/Mode'
 import { Button } from './pages/docs/Button'
 import { Card } from './pages/docs/Card'
+import { Forms } from './pages/docs/Forms'
 import { TabsPage } from './pages/docs/TabsPage'
 import { AccordionPage } from './pages/docs/AccordionPage'
 import { Alert } from './pages/docs/Alert'
@@ -36,6 +37,7 @@ const docs = {
   typography: Typography,
   mode: Mode,
   button: Button,
+  forms: Forms,
   card: Card,
   tabs: TabsPage,
   accordion: AccordionPage,

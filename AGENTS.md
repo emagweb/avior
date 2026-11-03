@@ -68,8 +68,10 @@ Ant Design, Bootstrap or Tailwind, without making every site look the same.
   Names that already exist, including compound ones such as `title-section`, stay until
   the maintainer decides otherwise.
 - Approved parts: `card` → `&-head`, `&-body`, `&-foot`; `accordion` → `&-item`,
-  `&-head`, `&-body`; `tabs` → `&-list`, `&-panel`; `code` → `&-copy`.
-- Approved names: `accordion`, `tabs`, `card`, `badge`, `alert` for components; `theme`
+  `&-head`, `&-body`; `tabs` → `&-list`, `&-panel`; `code` → `&-copy`;
+  `field` → `&-label`, `&-hint`, `&-error`.
+- Approved names: `accordion`, `tabs`, `card`, `badge`, `alert`, `field`, `input`,
+  `select`, `check`, `switch` for components; `theme`
   for a set of variables that gives one site its look, kept in `src/styles/themes/`;
   `mode` for light and dark, in `components/Mode.jsx` and `components/_mode.sass`.
   The word `theme` is reserved for sets of variables; do not use it for light and dark.

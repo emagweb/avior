@@ -10,6 +10,7 @@
   <url><loc>https://example.com/docs/typography</loc><priority>0.8</priority></url>
   <url><loc>https://example.com/docs/mode</loc><priority>0.8</priority></url>
   <url><loc>https://example.com/docs/button</loc><priority>0.8</priority></url>
+  <url><loc>https://example.com/docs/forms</loc><priority>0.8</priority></url>
   <url><loc>https://example.com/docs/card</loc><priority>0.8</priority></url>
   <url><loc>https://example.com/docs/tabs</loc><priority>0.8</priority></url>
   <url><loc>https://example.com/docs/accordion</loc><priority>0.8</priority></url>

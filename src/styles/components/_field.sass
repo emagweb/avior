@@ -1,0 +1,25 @@
+@use "../core" as *
+
+$field-gap: 8px !default
+$field-space: 20px !default
+$field-error: color-mix(in srgb, #{$red} 72%, var(--text)) !default
+
+.field
+  display: flex
+  flex-direction: column
+  gap: $field-gap
+  margin: 0 0 $field-space
+  &-label
+    color: var(--text)
+    font-size: .875rem
+    font-weight: 600
+    line-height: 1.25rem
+  &-hint,
+  &-error
+    margin: 0
+    font-size: .8125rem
+    line-height: 1.25rem
+  &-hint
+    color: var(--muted)
+  &-error
+    color: $field-error

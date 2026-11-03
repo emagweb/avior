@@ -1,0 +1,59 @@
+@use "../core" as *
+
+$input-height: 40px !default
+$input-padding: 0 12px !default
+$input-radius: $radius !default
+$input-line: var(--line) !default
+$input-background: var(--page) !default
+$input-focus: var(--accent) !default
+$input-error: color-mix(in srgb, #{$red} 72%, var(--text)) !default
+
+.input,
+.select
+  display: block
+  width: 100%
+  height: $input-height
+  padding: $input-padding
+  color: var(--text)
+  font-size: 1rem
+  line-height: 1.5rem
+  border: 1px solid $input-line
+  border-radius: $input-radius
+  background-color: $input-background
+  outline: none
+  transition: border-color ease .2s, box-shadow ease .2s
+  &::placeholder
+    color: var(--muted)
+    opacity: 1
+  &:hover
+    border-color: var(--muted)
+  &:focus-visible
+    border-color: $input-focus
+    box-shadow: 0 0 0 3px color-mix(in srgb, #{$input-focus} 24%, transparent)
+  &[aria-invalid="true"]
+    border-color: $input-error
+    &:focus-visible
+      box-shadow: 0 0 0 3px color-mix(in srgb, #{$input-error} 24%, transparent)
+  &:disabled
+    cursor: not-allowed
+    opacity: .5
+  &.mini
+    height: 32px
+    font-size: .875rem
+    line-height: 1.25rem
+
+textarea.input
+  height: auto
+  min-height: 96px
+  padding-top: 8px
+  padding-bottom: 8px
+  resize: vertical
+
+.select
+  padding-right: 36px
+  appearance: none
+  cursor: pointer
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%)
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%
+  background-size: 5px 5px
+  background-repeat: no-repeat

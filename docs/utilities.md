@@ -235,6 +235,11 @@ site has a page for each, with an example and the table of its variables.
 | class            | parts                                              | page             |
 | ---------------- | -------------------------------------------------- | ---------------- |
 | `button`         | variants `dark`, `outline`, `mini`, palette names  | `/docs/button`   |
+| `field`          | `field-label`, `field-hint`, `field-error`         | `/docs/forms`    |
+| `input`          | on `input` and `textarea`, `mini`                  | `/docs/forms`    |
+| `select`         | `mini`                                             | `/docs/forms`    |
+| `check`          | checkbox or radio, by `type`                       | `/docs/forms`    |
+| `switch`         | checkbox with `role='switch'`                      | `/docs/forms`    |
 | `card`           | `card-head`, `card-body`, `card-foot`              | `/docs/card`     |
 | `tabs`           | `tabs-list`, `tabs-panel`                          | `/docs/tabs`     |
 | `accordion`      | `accordion-item`, `accordion-head`, `accordion-body` | `/docs/accordion` |

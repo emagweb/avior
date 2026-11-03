@@ -26,6 +26,7 @@ const docs = [
     Icon: PiPuzzlePieceBold,
     pages: [
       { slug: 'button', title: 'Button' },
+      { slug: 'forms', title: 'Forms' },
       { slug: 'card', title: 'Card' },
       { slug: 'tabs', title: 'Tabs' },
       { slug: 'accordion', title: 'Accordion' },
