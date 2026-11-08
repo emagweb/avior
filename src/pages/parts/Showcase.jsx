@@ -1,5 +1,4 @@
 import { PiPlusCircle } from 'react-icons/pi'
-import { showcase } from '../../data/links'
 import craftflow640 from '../../assets/showcase/craftflow-640.webp'
 import craftflow800 from '../../assets/showcase/craftflow-800.webp'
 import craftflow1248 from '../../assets/showcase/craftflow-1248.webp'
@@ -81,7 +80,7 @@ const Showcase = () => {
               </p>
             </div>
             <div className='col-4 flex jcfe'>
-              <a href={showcase} className='button dark outline' target='_blank' rel='noreferrer'>Send your site</a>
+              <a href='/contact' className='button dark outline'>Send your site</a>
             </div>
           </div>
         </div>

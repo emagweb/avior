@@ -2,6 +2,7 @@ const forms = {
   contact: {
     name: { type: 'text', required: true, max: 120 },
     email: { type: 'email', required: true, max: 254 },
+    site: { type: 'url', required: false, max: 2048 },
     message: { type: 'text', required: true, max: 4000 },
   },
 }
@@ -13,6 +14,16 @@ const MAX_BYTES = 16384
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const reply = (status, body) => Response.json(body, { status })
+
+const toUrl = (value) => {
+  try {
+    const url = new URL(/^[a-z][a-z\d+.-]*:\/\//i.test(value) ? value : `https://${value}`)
+    if (!['http:', 'https:'].includes(url.protocol) || !url.hostname.includes('.')) return null
+    return url.href
+  } catch {
+    return null
+  }
+}
 
 const hash = async (text) => {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
@@ -36,6 +47,15 @@ const validate = (schema, input) => {
     }
     if (rule.type === 'email' && !EMAIL.test(value)) {
       errors[name] = 'Enter a valid email address'
+      continue
+    }
+    if (rule.type === 'url') {
+      const url = toUrl(value)
+      if (!url) {
+        errors[name] = 'Enter a link such as https://example.com'
+        continue
+      }
+      fields[name] = url
       continue
     }
     fields[name] = value

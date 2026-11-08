@@ -35,7 +35,7 @@ const About = () => {
         <p>
           Tell me what is missing or what broke in
           the <a href={issues} target='_blank' rel='noreferrer'>issues</a>, send a pull
-          request, or <a href='/docs/showcase'>send the site</a> you built with it.
+          request, or <a href='/contact'>send the site</a> you built with it.
         </p>
         <p className='c-muted'>Antonina Osypenko</p>
       </section>

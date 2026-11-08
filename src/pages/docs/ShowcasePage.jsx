@@ -1,6 +1,4 @@
-import { PiArrowUpRightBold } from 'react-icons/pi'
 import { DocsLayout } from '../../components/DocsLayout'
-import { showcase } from '../../data/links'
 
 const ShowcasePage = () => (
   <DocsLayout
@@ -12,15 +10,12 @@ const ShowcasePage = () => (
     toc={[{ id: 'send', title: 'Send your site' }, { id: 'chosen', title: 'How sites are chosen' }]}>
 
     <h2 id='send'>Send your site</h2>
-    <p>Open a showcase issue on GitHub. The form asks for three things:</p>
+    <p>Use the contact form. Put the link in the Site field, and in the message write:</p>
     <ul>
-      <li>the link to the live site;</li>
       <li>a few words about the project and who it is for;</li>
       <li>optionally, which parts of Avior you changed or added.</li>
     </ul>
-    <a href={showcase} className='button dark m-t-8' target='_blank' rel='noreferrer'>
-      Send your site<PiArrowUpRightBold aria-hidden='true' />
-    </a>
+    <a href='/contact' className='button dark m-t-8'>Send your site</a>
 
     <h2 id='chosen'>How sites are chosen</h2>
     <p>

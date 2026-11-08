@@ -25,6 +25,9 @@ const Contact = () => {
             <Field label='Email' hint='Only to reply to you.' error={errors.email}>
               {(props) => <input className='input' name='email' type='email' autoComplete='email' maxLength='254' required {...props} />}
             </Field>
+            <Field label='Site' hint='Optional. The link, if you built a site with Avior.' error={errors.site}>
+              {(props) => <input className='input' name='site' type='url' inputMode='url' autoComplete='url' placeholder='https://' maxLength='2048' {...props} />}
+            </Field>
             <Field label='Message' error={errors.message}>
               {(props) => <textarea className='input' name='message' rows='6' maxLength='4000' required {...props} />}
             </Field>
