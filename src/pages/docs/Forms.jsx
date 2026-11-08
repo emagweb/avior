@@ -98,8 +98,9 @@ const Forms = () => (
 
     <h2 id='sending'>Sending a form</h2>
     <p>
-      A static site has no server. <code>hooks/useSendForm.js</code> sends the fields as JSON to
-      a forms service and returns the errors by field name, so each one lands under its input.
+      <code>hooks/useSendForm.js</code> sends the fields as JSON to <code>FORMS_ENDPOINT</code> and
+      returns the errors by field name, so each one lands under its input. A hidden
+      <code> website</code> input catches bots: people never fill it in.
     </p>
     <Code label='Contact.jsx' icon='file' code={`const { send, status, errors } = useSendForm('contact')
 
@@ -112,13 +113,25 @@ const onSubmit = (event) => {
   <Field label='Email' error={errors.email}>
     {(props) => <input className='input' name='email' type='email' {...props} />}
   </Field>
+  <input name='website' tabIndex='-1' autoComplete='off' hidden />
   <button className='button dark' disabled={status === 'sending'}>Send</button>
 </form>`} />
+    <p>
+      On Cloudflare Pages the endpoint is part of the site. <code>functions/v1/forms/[formId].js</code> checks
+      the fields against the schema of the form, limits each visitor to five messages in ten
+      minutes and saves them to a D1 database, keeping them for 90 days. The database and the
+      table are described in <code>wrangler.toml</code> and <code>migrations/</code>.
+    </p>
+    <Code label='Terminal' icon='terminal' code={`wrangler d1 create avior
+wrangler d1 migrations apply avior --remote
+yarn build && wrangler pages deploy
+wrangler d1 execute avior --remote --command "SELECT * FROM messages"`} />
     <div className='alert blue'>
       <PiInfo aria-hidden='true' />
       <p>
-        Until <code>FORMS_ENDPOINT</code> holds the address of the service, the hook sends
-        nothing and returns the status <code>unavailable</code>.
+        Put the id of your own database into <code>wrangler.toml</code>. On another host, point
+        <code> FORMS_ENDPOINT</code> to a forms service with the same contract, or set it
+        to an empty string and the hook returns the status <code>unavailable</code>.
       </p>
     </div>
     <Table

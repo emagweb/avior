@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-const FORMS_ENDPOINT = ''
+const FORMS_ENDPOINT = '/v1/forms'
 
 const useSendForm = (formId) => {
   const [status, setStatus] = useState('idle')
   const [errors, setErrors] = useState({})
 
-  const send = async (fields, token = '') => {
+  const send = async ({ website = '', ...fields }, token = '') => {
     setErrors({})
 
     if (!FORMS_ENDPOINT) {
@@ -16,10 +16,10 @@ const useSendForm = (formId) => {
 
     setStatus('sending')
     try {
-      const response = await fetch(`${FORMS_ENDPOINT}/v1/forms/${encodeURIComponent(formId)}`, {
+      const response = await fetch(`${FORMS_ENDPOINT}/${encodeURIComponent(formId)}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields, website: '', token }),
+        body: JSON.stringify({ fields, website, token }),
       })
       const result = await response.json().catch(() => ({}))
 

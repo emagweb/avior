@@ -1,0 +1,9 @@
+name = "avior"
+pages_build_output_dir = "build"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "avior"
+database_id = "ad62b936-f40e-44ca-9d20-79e018a4463a"
+migrations_dir = "migrations"
