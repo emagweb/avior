@@ -1,0 +1,12 @@
+{
+  "name": "avior",
+  "interface": { "displayName": "Avior" },
+  "plugins": [
+    {
+      "name": "avior",
+      "source": { "source": "local", "path": "./plugins/avior" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Developer Tools"
+    }
+  ]
+}

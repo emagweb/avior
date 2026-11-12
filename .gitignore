@@ -9,6 +9,7 @@ dist/
 build/
 build-server/
 .wrangler/
+avior-plugin.zip
 
 .yarn/*
 !.yarn/patches

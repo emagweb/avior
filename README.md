@@ -32,6 +32,34 @@ You need Node.js 20 or later. Yarn 4 ships with the repository in `.yarn/release
 | `yarn check`           | lists placeholders left before publishing                     |
 | `PURGE=off yarn build` | production build without removing unused classes              |
 
+## Make it your site
+
+The repository is the Avior site itself, so a fresh clone still carries its name, content
+and services. Before building on it, whether by hand or with an AI agent:
+
+1. **Name.** Set `SITE` and `DEFAULT_TITLE` in `src/hooks/useMeta.js`, the title and meta
+   tags in `public/index.html`, and `name` and `short_name` in `public/manifest.json`.
+2. **Logo and icons.** Replace `src/assets/svg/logo.svg`, and `favicon.ico`,
+   `logo192.png`, `logo512.png`, `apple-touch-icon.png` and `og-image.jpg` in `public/`.
+3. **Content.** The home page sections in `src/pages/parts/`, the docs in
+   `src/pages/docs/` and `src/data/docs.js`, About, Contact and the menus in
+   `src/data/menu.js` describe Avior. Rewrite or remove them.
+4. **Legal pages.** Privacy, Cookie and Terms in `src/pages/` describe the Avior site and
+   its contact form. Rewrite them for what your site collects.
+5. **Contact form.** It sends to `functions/v1/forms/[formId].js`, a Cloudflare Pages
+   Function that saves messages to D1, and `wrangler.toml` points at the Avior database.
+   Either create your own with `wrangler d1 create`, put its id into `wrangler.toml` and
+   run `wrangler d1 migrations apply <name> --remote`, or remove `functions/`,
+   `migrations/` and `wrangler.toml` and set `FORMS_ENDPOINT` in
+   `src/hooks/useSendForm.js` to `''`. The details are on `/docs/forms`.
+6. **Plugin.** `plugins/` and `.agents/` package the Avior plugin for ChatGPT and Codex.
+   Remove them from your site.
+7. **Domain.** Run `yarn check` and replace the placeholders it lists, see
+   [Before you publish](#before-you-publish).
+
+An AI agent working on a clone should go through this list with the user before the first
+change, and ask rather than guess the name, the domain and whether to keep the form.
+
 ## Documentation
 
 The documentation is part of the site: run `yarn start` and open `/docs`. It covers
@@ -44,6 +72,19 @@ In the repository:
 - [docs/decisions.md](docs/decisions.md) — why the engine is built the way it is
 - [CONTRIBUTING.md](CONTRIBUTING.md) — how to extend the system
 - [AGENTS.md](AGENTS.md) — rules for AI coding agents working on the code
+
+## Use with ChatGPT and Codex
+
+The Avior plugin adds a skill that teaches the agent to build and change a site on
+Avior: variables, helpers, components, pages and publishing.
+
+```bash
+codex plugin marketplace add emagweb/avior
+```
+
+Then install Avior from `/plugins` in Codex, or from the Plugins Directory in the ChatGPT
+desktop app. The plugin lives in [plugins/avior](plugins/avior). See the demo at
+[avior-82x.pages.dev](https://avior-82x.pages.dev/).
 
 ## Structure
 

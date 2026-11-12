@@ -20,6 +20,13 @@ The means are three layers, and nothing else:
 The goal of publishing it is a foundation others can build on: a product as convenient as
 Ant Design, Bootstrap or Tailwind, without making every site look the same.
 
+## If this is a clone for another site
+
+These rules are for work on Avior itself. If the user is building their own site from
+this repository, start with "Make it your site" in [README.md](README.md): the name, logo,
+content, legal pages, contact form and domain still belong to Avior. Ask the user about
+each of them. In their site the user is the maintainer who agrees new names.
+
 ## How to work on it
 
 - Treat every change as a change to the system, not to one page. Ask: can another project

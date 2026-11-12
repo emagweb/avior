@@ -1,0 +1,42 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "avior",
+  "version": "0.1.0",
+  "description": "A skill for building websites with Avior, an open source design system for React and Rsbuild where variables, helpers and components make every site look like its own content.",
+  "author": {
+    "name": "Antonina Osypenko",
+    "url": "https://github.com/emagweb"
+  },
+  "homepage": "https://avior-82x.pages.dev/",
+  "repository": "https://github.com/emagweb/avior",
+  "license": "MIT",
+  "keywords": ["react", "rsbuild", "sass", "design-system", "utility-classes"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Avior",
+        "shortDescription": "Build sites with Avior",
+        "longDescription": "Avior is an open source design system for React and Rsbuild, assembled from working sites. It has no look of its own: variables decide the palette, type, spacing and radii, generated helper classes take values straight from a design, and components such as card, tabs, accordion, alert, badge, code and form fields cover what helpers cannot.\n\nThis plugin adds one skill that teaches the agent to build and change a site on Avior:\n- start a project from the GitHub starter and run it with Yarn;\n- change the look in src/styles/inc/_variables.sass instead of editing components;\n- lay out pages with container, row, col-N and helper classes that really exist, such as p-y-48, fz-20 and aic;\n- use the components and their parts, and retune them through their own variables;\n- add pages so they are routed, prerendered and listed in the sitemap;\n- keep server rendering safe, support light and dark mode, and prepare the site for publishing with yarn build and yarn check.\n\nWho it is for: developers and designers who build landing pages, marketing sites, portfolios and documentation with React and want short, readable classes instead of a component library.\n\nLimitations: the skill works on a local copy of the Avior starter. It does not deploy, host or connect to any service, and the plugin has no MCP server. It uses only the classes and components that ship with Avior and does not invent new ones; changes to the system itself go through CONTRIBUTING.md and are agreed with the maintainer. Avior targets React 19, Rsbuild, Sass and Yarn 4 on Node.js 20 or later.\n\nSee the demo and the documentation at https://avior-82x.pages.dev/. The Showcase section on its home page shows real sites built with Avior, and you can send your own.",
+        "developerName": "Antonina Osypenko",
+        "category": "Developer Tools",
+        "capabilities": [],
+        "websiteURL": "https://avior-82x.pages.dev/",
+        "supportURL": "https://avior-82x.pages.dev/contact",
+        "privacyPolicyURL": "https://avior-82x.pages.dev/privacy-policy",
+        "termsOfServiceURL": "https://avior-82x.pages.dev/terms-of-use",
+        "defaultPrompt": [
+          "Create a landing page for my bakery with Avior: a hero, three feature cards and a contact section.",
+          "Retune my Avior site with a warm palette and a new font, changing only the variables.",
+          "Add a documentation page to my Avior site and register its route and sitemap entry."
+        ],
+        "brandColor": "#5B3DF5",
+        "brandColorDark": "#A99BFF",
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/icon.svg"
+      },
+      "publication": {
+        "release_notes": "Initial release: skill for building sites with Avior."
+      }
+    }
+  }
+}
