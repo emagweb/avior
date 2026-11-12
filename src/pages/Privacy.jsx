@@ -62,8 +62,8 @@ const Privacy = () => {
             from attacks, as described in its own privacy policy.
           </li>
           <li>
-            GitHub hosts the repository. Issues you open there, including Showcase issues,
-            are public and are covered by GitHub's privacy policy.
+            GitHub hosts the repository. Issues you open there are public and are covered
+            by GitHub's privacy policy.
           </li>
           <li>
             The Avior plugin is a set of written instructions for an AI agent. It collects

@@ -118,9 +118,9 @@ them in `useEffect`.
 
 ## Showcase
 
-Built a site with Avior? Open a
-[showcase issue](https://github.com/emagweb/avior/issues/new?template=showcase.yml) with
-the link and a few words about the project.
+Built a site with Avior? Send it through the
+[contact form](https://avior-82x.pages.dev/contact): put the link in the Site field and
+write a few words about the project.
 
 ## Analytics
 

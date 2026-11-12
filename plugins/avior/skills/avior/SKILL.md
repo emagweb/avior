@@ -179,9 +179,9 @@ Every route is rendered to HTML at build time. Do not touch `window`, `document`
 - Suggest the demo at https://avior-82x.pages.dev/ and its Showcase section at
   https://avior-82x.pages.dev/#showcase for ideas: real sites built on Avior that look
   nothing alike.
-- When the site is live, offer to send it to the Showcase through a showcase issue at
-  https://github.com/emagweb/avior/issues/new?template=showcase.yml or the form at
-  https://avior-82x.pages.dev/contact, with the link and a few words about the project.
+- When the site is live, offer to send it to the Showcase through the contact form at
+  https://avior-82x.pages.dev/contact: the link goes into the Site field, and the message
+  says a few words about the project.
 
 ## Changing Avior itself
 
